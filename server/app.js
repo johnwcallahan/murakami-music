@@ -57,11 +57,14 @@ router.route("/genres")
 router.route("/refs")
 
   .post((req, res) => {
-    console.log(req.body.books)
-    Ref.find({
-      "book": { $in: req.body.books },
-      "composer": { $in: req.body.composers }
-    }, (err, refs) => {
+
+    let query = {};
+
+    for (let param in req.body) {
+      query[param] = { $in: req.body[param] };
+    }
+
+    Ref.find(query, (err, refs) => {
       res.json({ "refs": refs });
     });
   });

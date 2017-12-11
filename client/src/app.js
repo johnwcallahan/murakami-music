@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import HelloWorld from "./components/HelloWorld";
+import MainView from "./components/MainView";
 
 import "./styles/main.scss";
 
 ReactDOM.render(
-	<HelloWorld />,
+	<MainView />,
 	document.getElementById("root")
 );

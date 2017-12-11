@@ -1,4 +1,5 @@
 // const _ = require("lodash");
+const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
@@ -13,6 +14,7 @@ const port = process.env.PORT || 3000;
 // Middleware
 app.use(bodyParser.json());
 app.use(morgan("dev"));
+app.use(cors());
 
 // DB
 mongoose.connect(process.env.MONGO_URI);

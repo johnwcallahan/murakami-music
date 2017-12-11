@@ -1,0 +1,28 @@
+{
+  "name": "murakami-music",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnwcallahan/murakami-music.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnwcallahan/murakami-music/issues"
+  },
+  "homepage": "https://github.com/johnwcallahan/murakami-music#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "lodash": "^4.17.4",
+    "mongodb": "^3.0.0-rc0",
+    "mongoose": "^4.13.6",
+    "morgan": "^1.9.0"
+  }
+}

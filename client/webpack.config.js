@@ -7,7 +7,7 @@ const injectConfig = new HtmlWebpackPlugin({
 
 module.exports = {
   context: __dirname + "/src",
-  entry: "./app.js",
+  entry: "./index.js",
   output: {
     path: __dirname + "/dst",
     filename: "bundle.js"

@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import MainView from "./components/MainView";
+import App from "./components/App";
 
 import "./styles/main.scss";
 
 ReactDOM.render(
-	<MainView />,
+	<App />,
 	document.getElementById("root")
 );

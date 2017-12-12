@@ -1,0 +1,34 @@
+.active {
+  background-color: grey;
+}
+
+.inactive {
+  background-color: #F5F5F5;
+}
+
+.selected {
+  background-color: #BABABA;
+}
+
+.list {
+  font-family: $primary-font;
+  font-size: $font-size-medium;
+  font-weight: 300;
+  list-style-type: none;
+  padding: 0 0 0 0;
+  width: 85%;
+  margin: 0 auto 0 auto;
+}
+
+.list-item {
+  text-align: center;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-container {
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}

@@ -1,0 +1,5 @@
+- Style components
+- Add Spotify player
+- Add Bootstrap scss to project
+- Setup production build
+- Deploy to Heroku

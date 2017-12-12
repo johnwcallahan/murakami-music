@@ -1,0 +1,15 @@
+.header {
+  height: 80px;
+
+  h1 {
+    font-family: $heading-font;
+    color: $primary-color;
+  }
+
+  p {
+    font-family: $heading-font;
+    color: $secondary-color;
+    font-size: $font-size-enhanced;
+    font-weight: lighter;
+  }
+}

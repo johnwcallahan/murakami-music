@@ -37,6 +37,7 @@ router.route("/api/books")
 router.route("/api/composers")
 
   .post((req, res) => {
+    console.log(req.body);
     getParam(req, res, "composer");
   });
 
@@ -78,21 +79,19 @@ function getParam(req, res, type) {
       if (err) {
         res.send(err);
       }
-      res.json({ [type + "s"]: data });
+      res.json({ [type]: data });
     });
   } else {
     let priors = {};
 
     for (let field in req.body) {
-      priors[field] = { $in: req.body[field]};
+      priors[field] = { $in: [].concat.apply([], [req.body[field]])};
     }
     Ref.distinct(type, priors, (err, data) => {
       if (err) {
         res.send(err);
       }
-      res.json({ [type + "s"]: data });
+      res.json({ [type]: data });
     });
   }
 }
-
-

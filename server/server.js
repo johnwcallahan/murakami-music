@@ -85,7 +85,10 @@ function getParam(req, res, type) {
     let priors = {};
 
     for (let field in req.body) {
-      priors[field] = { $in: [].concat.apply([], [req.body[field]])};
+      if (req.body[field].length > 0) {
+        console.log("hi")
+        priors[field] = { $in: [].concat.apply([], [req.body[field]])};
+      }
     }
     Ref.distinct(type, priors, (err, data) => {
       if (err) {

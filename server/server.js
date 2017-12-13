@@ -30,35 +30,20 @@ router.get("/", (req, res) => {
 
 router.route("/api/books")
 
-  .get((req, res) => {
-    Ref.distinct("book", (err, books) => {
-      if (err) {
-        res.send(err);
-      }
-      res.json({ "books": books });
-    });
+  .post((req, res) => {
+    getParam(req, res, "book");
   });
 
 router.route("/api/composers")
 
-  .get((req, res) => {
-    Ref.distinct("composer", (err, composers) => {
-      if (err) {
-        res.send(err);
-      }
-      res.json({ "composers": composers });
-    });
+  .post((req, res) => {
+    getParam(req, res, "composer");
   });
 
 router.route("/api/genres")
 
-  .get((req, res) => {
-    Ref.distinct("genre", (err, genres) => {
-      if (err) {
-        res.send(err);
-      }
-      res.json({ "genres": genres });
-    });
+  .post((req, res) => {
+    getParam(req, res, "genre");
   });
 
 router.route("/api/refs")
@@ -84,3 +69,30 @@ app.use(router);
 
 app.listen(port);
 console.log(`listening on port ${port}`);
+
+
+
+function getParam(req, res, type) {
+  if (!req.body) {
+    Ref.distinct(type, (err, data) => {
+      if (err) {
+        res.send(err);
+      }
+      res.json({ [type + "s"]: data });
+    });
+  } else {
+    let priors = {};
+
+    for (let field in req.body) {
+      priors[field] = { $in: req.body[field]};
+    }
+    Ref.distinct(type, priors, (err, data) => {
+      if (err) {
+        res.send(err);
+      }
+      res.json({ [type + "s"]: data });
+    });
+  }
+}
+
+

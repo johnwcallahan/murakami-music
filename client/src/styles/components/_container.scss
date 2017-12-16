@@ -16,17 +16,19 @@
   font-weight: 300;
   list-style-type: none;
   padding: 0 0 0 0;
-  width: 85%;
   margin: 0 auto 0 auto;
+  cursor: pointer;
+
+  li {
+    padding: 8px;
+
+    &:hover {
+      background-color: $secondary-color;
+    }
+
+  }
 }
 
-.list-item {
-  text-align: center;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .list-container {
   padding: 0 0 0 0;

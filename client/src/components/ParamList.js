@@ -2,7 +2,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export default class Container extends React.Component {
+export default class ParamList extends React.Component {
 
   constructor(props) {
     super(props);
@@ -36,7 +36,7 @@ export default class Container extends React.Component {
   }
 }
 
-Container.propTypes = {
+ParamList.propTypes = {
   type: PropTypes.string,
   onClick: PropTypes.func,
   params: PropTypes.array,

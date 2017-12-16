@@ -12,8 +12,8 @@ export default class Results extends React.Component {
       return (
         <li key={ref["_id"]}>
           <p className="ref-title">{ref.book} | {ref.composer} | {ref.piece} | {ref.genre}</p>
-          <p>{ref.quote}</p>
-          <small>{ref.page}</small>
+          <p>{ref.quote} <small>{ref.page}</small></p>
+
         </li>
       );
     });
@@ -21,7 +21,9 @@ export default class Results extends React.Component {
       return <p>No results</p>;
     }
     return (
-      <ul>{refs}</ul>
+      <div className="results">
+        <ul className="ref-list">{refs}</ul>
+      </div>
     );
   }
 }

@@ -1,13 +1,11 @@
 import _ from "lodash";
 import React from "react";
 
-import Container from "./Container";
+import ParamList from "./ParamList";
 import Header from "./Header";
 import Results from "./Results";
 
 import { fetchParams, fetchRefs } from "../util/requests";
-
-// const PARAM_FIELDS = ["book", "composer", "genre"];
 
 export default class App extends React.Component {
 
@@ -34,7 +32,6 @@ export default class App extends React.Component {
   }
 
   getParams() {
-    // TODO: See if this can be improved
     Promise.all([
       fetchParams("book"),
       fetchParams("composer"),
@@ -74,18 +71,17 @@ export default class App extends React.Component {
           <div className="col-xs-12">
             <Header />
           </div>
-
-          <div className="col-xs-3">
-            <Container type="book"
+          <div className="col-lg-2 col-xs-3">
+            <ParamList type="book"
                        onClick={this.handleClick}
                        params={this.state.params.book}
                        selected={this.state.selected.book} />
           </div>
-          <div className="col-xs-6">
+          <div className="col-lg-8 col-xs-6">
             <Results refs={this.state.refs} />
           </div>
-          <div className="col-xs-3">
-            <Container type="composer"
+          <div className="col-lg-2 col-xs-3">
+            <ParamList type="composer"
                        onClick={this.handleClick}
                        params={this.state.params.composer}
                        selected={this.state.selected.composer} />
@@ -95,11 +91,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-
-          // <div className="col-xs-12">
-          //   <Container type="genre"
-          //              onClick={this.handleClick}
-          //              params={this.state.params.genre}
-          //              selected={this.state.selected.genre} />
-          // </div>

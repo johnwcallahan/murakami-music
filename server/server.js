@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const path = require("path");
+const queries = require("./queries");
 
 // Config
 require("dotenv").config();
@@ -28,33 +29,71 @@ router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "/dst/index.html"));
 });
 
-router.route("/api/books")
+router.route("/api/book")
 
   .post((req, res) => {
-    getParam(req, res, "book");
+
+    // If no params are given in the request body, return all books
+    if (isDeeplyEmpty(req.body)) {
+      Ref.distinct("book", (err, data) => {
+        if (err) {
+          res.send(err.body);
+        }
+        res.json({ "book": data});
+      });
+    } else {
+      Ref.aggregate(queries.getBook(req.body.composer), (err, data) => {
+        if (err) {
+          res.send(err);
+        }
+        res.json({ "book": data[0].setBooks });
+      })
+    }
   });
 
-router.route("/api/composers")
+router.route("/api/composer")
 
   .post((req, res) => {
-    console.log(req.body);
-    getParam(req, res, "composer");
+
+    // If no params are given in the request body, return all books
+    if (isDeeplyEmpty(req.body)) {
+      Ref.distinct("composer", (err, data) => {
+        if (err) {
+          res.send(err.body);
+        }
+        res.json({ "composer": data});
+      });
+    } else {
+      Ref.aggregate(queries.getComposer(req.body.book), (err, data) => {
+        if (err) {
+          res.send(err);
+        }
+        res.json({ "composer": data[0].setComposers });
+      })
+    }
   });
 
-router.route("/api/genres")
+router.route("/api/genre")
 
-  .post((req, res) => {
-    getParam(req, res, "genre");
+  .get((req, res) => {
+    Ref.distinct("genre", (err, data) => {
+      if (err) {
+        res.send(err);
+      }
+      res.json({ "genre": data });
+    });
   });
 
-router.route("/api/refs")
+router.route("/api/ref")
 
   .post((req, res) => {
 
     let query = {};
 
     for (let param in req.body) {
-      query[param] = { $in: req.body[param] };
+      if (req.body[param].length > 0) {
+        query[param] = { $in: req.body[param] };
+      }
     }
 
     Ref.find(query, (err, refs) => {
@@ -72,29 +111,13 @@ app.listen(port);
 console.log(`listening on port ${port}`);
 
 
-
-function getParam(req, res, type) {
-  if (!req.body) {
-    Ref.distinct(type, (err, data) => {
-      if (err) {
-        res.send(err);
-      }
-      res.json({ [type]: data });
-    });
-  } else {
-    let priors = {};
-
-    for (let field in req.body) {
-      if (req.body[field].length > 0) {
-        console.log("hi")
-        priors[field] = { $in: [].concat.apply([], [req.body[field]])};
-      }
+function isDeeplyEmpty(body) {
+  for (let prop in body) {
+    if (typeof(body[prop]) === "object" && body[prop].length > 0) {
+      return false;
+    } else if (typeof(body[prop]) !== "object" && body[prop]) {
+      return false;
     }
-    Ref.distinct(type, priors, (err, data) => {
-      if (err) {
-        res.send(err);
-      }
-      res.json({ [type]: data });
-    });
   }
+  return true;
 }

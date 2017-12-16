@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const path = require("path");
-const queries = require("./queries");
 
 // Config
 require("dotenv").config();
@@ -79,23 +78,7 @@ router.route("/api/ref")
     });
   });
 
-router.get("/", (req, res) => {
-  res.json({ message: "Hello, World!"});
-});
-
 app.use(router);
 
 app.listen(port);
 console.log(`listening on port ${port}`);
-
-
-function isDeeplyEmpty(body) {
-  for (let prop in body) {
-    if (typeof(body[prop]) === "object" && body[prop].length > 0) {
-      return false;
-    } else if (typeof(body[prop]) !== "object" && body[prop]) {
-      return false;
-    }
-  }
-  return true;
-}

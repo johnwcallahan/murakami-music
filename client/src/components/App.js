@@ -1,51 +1,67 @@
 import _ from "lodash";
-import axios from "axios";
 import React from "react";
 
 import Container from "./Container";
 import Header from "./Header";
 import Results from "./Results";
 
+import { fetchParams, fetchRefs } from "../util/requests";
+
+// const PARAM_FIELDS = ["book", "composer", "genre"];
+
 export default class App extends React.Component {
 
   constructor() {
     super();
     this.state = {
-      books: [],
-      composers: [],
-      genres: [],
+      params: {
+        book: [],
+        composer: [],
+        genre: []
+      },
+      selected: {
+        book: [],
+        composer: [],
+        genre: []
+      },
       refs: []
     };
-    this.toggleParam = this.toggleParam.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  toggleParam(type, param) {
+  componentDidMount() {
+    this.getParams();
+  }
+
+  getParams() {
+    // TODO: See if this can be improved
+    Promise.all([
+      fetchParams("book"),
+      fetchParams("composer"),
+      fetchParams("genre"),
+    ]).then(([book, composer, genre]) => {
+      this.setState({
+        params: {
+          book: book.data.book,
+          composer: composer.data.composer,
+          genre: genre.data.genre
+        }
+      });
+    });
+  }
+
+  handleClick(type, param) {
     this.setState(() => {
-      return { [type]:  _.xor(this.state[type], [param]) };
-    }, () => this.getRefs());
+      return { selected: { ...this.state.selected, [type]:  _.xor(this.state.selected[type], [param]) }};
+    }, () => {
+      this.getRefs();
+    });
   }
 
   getRefs() {
-    // If nothing is selected, show no references
-    if (!this.state.books.length
-        && !this.state.composers.length
-        && !this.state.genres.length) {
-      this.setState({ refs: [] });
-    }
-
-    let reqBody = {};
-    let searchableFields = ["book", "composer", "genre"];
-
-    searchableFields.forEach(field => {
-      if (this.state[field + "s"].length) {
-        reqBody[field] = this.state[field + "s"];
-      }
-    });
-
-    axios({
-      method: "post",
-      url: "http://localhost:3000/api/refs",
-      data: reqBody
+    fetchRefs({
+      book: this.state.selected.book,
+      composer: this.state.selected.composer
     }).then(res => {
       this.setState({ refs: res.data.refs });
     });
@@ -58,17 +74,32 @@ export default class App extends React.Component {
           <div className="col-xs-12">
             <Header />
           </div>
+
           <div className="col-xs-3">
-            <Container type="books" onClick={this.toggleParam} />
+            <Container type="book"
+                       onClick={this.handleClick}
+                       params={this.state.params.book}
+                       selected={this.state.selected.book} />
           </div>
           <div className="col-xs-6">
             <Results refs={this.state.refs} />
           </div>
           <div className="col-xs-3">
-            <Container type="composers" onClick={this.toggleParam} />
+            <Container type="composer"
+                       onClick={this.handleClick}
+                       params={this.state.params.composer}
+                       selected={this.state.selected.composer} />
           </div>
         </div>
       </div>
     );
   }
 }
+
+
+          // <div className="col-xs-12">
+          //   <Container type="genre"
+          //              onClick={this.handleClick}
+          //              params={this.state.params.genre}
+          //              selected={this.state.selected.genre} />
+          // </div>

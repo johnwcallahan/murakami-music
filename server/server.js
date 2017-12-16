@@ -31,46 +31,24 @@ router.get("/", (req, res) => {
 
 router.route("/api/book")
 
-  .post((req, res) => {
-
-    // If no params are given in the request body, return all books
-    if (isDeeplyEmpty(req.body)) {
-      Ref.distinct("book", (err, data) => {
-        if (err) {
-          res.send(err.body);
-        }
-        res.json({ "book": data});
-      });
-    } else {
-      Ref.aggregate(queries.getBook(req.body.composer), (err, data) => {
-        if (err) {
-          res.send(err);
-        }
-        res.json({ "book": data[0].setBooks });
-      })
-    }
+  .get((req, res) => {
+    Ref.distinct("book", (err, data) => {
+      if (err) {
+        res.send(err);
+      }
+      res.json({ "book": data });
+    });
   });
 
 router.route("/api/composer")
 
-  .post((req, res) => {
-
-    // If no params are given in the request body, return all books
-    if (isDeeplyEmpty(req.body)) {
-      Ref.distinct("composer", (err, data) => {
-        if (err) {
-          res.send(err.body);
-        }
-        res.json({ "composer": data});
-      });
-    } else {
-      Ref.aggregate(queries.getComposer(req.body.book), (err, data) => {
-        if (err) {
-          res.send(err);
-        }
-        res.json({ "composer": data[0].setComposers });
-      })
-    }
+  .get((req, res) => {
+    Ref.distinct("composer", (err, data) => {
+      if (err) {
+        res.send(err);
+      }
+      res.json({ "composer": data });
+    });
   });
 
 router.route("/api/genre")

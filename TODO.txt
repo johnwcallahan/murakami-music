@@ -1,4 +1,5 @@
 - Style components
+- Clean up some of the component function names
 - Add genre filter to composer list
 - Add search for composer list
 - Add Spotify player

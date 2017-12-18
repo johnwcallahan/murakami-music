@@ -66,21 +66,23 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid">
-        <div className="row">
+      <div className="container-fluid app-container">
+        <div className="row header-container">
           <div className="col-xs-12">
             <Header />
           </div>
-          <div className="col-lg-2 col-xs-3">
+        </div>
+        <div className="row content-container">
+          <div className="col-lg-2 col-xs-3 book-list-container list-container">
             <ParamList type="book"
                        onClick={this.handleClick}
                        params={this.state.params.book}
                        selected={this.state.selected.book} />
           </div>
-          <div className="col-lg-8 col-xs-6">
+          <div className="col-lg-8 col-xs-6 ref-container">
             <Results refs={this.state.refs} />
           </div>
-          <div className="col-lg-2 col-xs-3">
+          <div className="col-lg-2 col-xs-3 composer-list-container list-container">
             <ParamList type="composer"
                        onClick={this.handleClick}
                        params={this.state.params.composer}

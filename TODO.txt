@@ -1,4 +1,6 @@
 - Style components
+- Add genre filter to composer list
+- Add search for composer list
 - Add Spotify player
 - Add Bootstrap scss to project
 - Add testing

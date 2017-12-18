@@ -21,9 +21,7 @@ export default class Results extends React.Component {
       return <p>No results</p>;
     }
     return (
-      <div className="results">
-        <ul className="ref-list">{refs}</ul>
-      </div>
+      <ul className="ref-list">{refs}</ul>
     );
   }
 }

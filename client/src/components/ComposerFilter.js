@@ -6,15 +6,10 @@ export default class ComposerFilter extends React.Component {
   constructor(props) {
     super(props);
     this.filterParam = this.filterParam.bind(this);
-    this.handleGenreSelect = this.handleGenreSelect.bind(this);
   }
 
   filterParam(event) {
     this.props.filterParam("composer", event.target.value);
-  }
-
-  handleGenreSelect(genre) {
-    this.props.handleGenreSelect("genre", genre);
   }
 
   render() {
@@ -41,7 +36,6 @@ export default class ComposerFilter extends React.Component {
 
 ComposerFilter.propTypes = {
   filterParam: PropTypes.func,
-  handleGenreSelect: PropTypes.func,
   genres: PropTypes.array,
   selected: PropTypes.array
 };

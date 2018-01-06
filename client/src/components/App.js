@@ -3,6 +3,7 @@ import React from "react";
 
 // import ComposerFilter from "./ComposerFilter";
 import ParamCollection from "./ParamCollection";
+import FilterParam from "./FilterParam";
 import Header from "./Header";
 import Results from "./Results";
 // import SpotifyPlayer from "./SpotifyPlayer";
@@ -23,11 +24,16 @@ export default class App extends React.Component {
       books: [],
       composers: [],
       genres: [],
+      activeFilter: {
+        composer: "",
+        book: "",
+        genre: ""
+      },
       refs: [],
       spotifyIds: []
     };
     this.toggleParam = this.toggleParam.bind(this);
-    this.filterParam = this.filterParam.bind(this);
+    this.setActiveFilter = this.setActiveFilter.bind(this);
   }
 
   componentDidMount() {
@@ -54,7 +60,8 @@ export default class App extends React.Component {
             title: composer,
             genre: genre,
             selected: false,
-            genreSelected: true});
+            genreSelected: true
+          });
         });
       }
 
@@ -119,17 +126,20 @@ export default class App extends React.Component {
     }
   }
 
-  filterParam(param, text) {
-    let filtered = this.state.composerMasterList.filter(item => {
-      return (item.toLowerCase().indexOf(text.toLowerCase()) > -1
-              && this.state.selected[param].indexOf(item) === -1);
-    });
-    this.setState({ params: { ...this.state.params, [param]: filtered }} );
+  setActiveFilter(type, text) {
+    this.setState(() => {
+      return { activeFilter: {...this.state.activeFilter, [type]: text} };
+    }, () => this.getRefs());
   }
 
-  // Filter out composers whose genre is not selected
+  // Filter composers whose genre is not selected and who are out of bounds in
+  // the active filter
   renderedComposers() {
-    return this.state.composers.filter(composer => composer.genreSelected);
+    let composerFilter = this.state.activeFilter.composer;
+    return this.state.composers.filter(composer => {
+      return composer.genreSelected
+      && (composerFilter == "" || composer.title.toLowerCase().indexOf(composerFilter) > -1);
+    });
   }
 
   render() {
@@ -154,6 +164,7 @@ export default class App extends React.Component {
             <ParamCollection type="genre"
                        onClick={this.toggleParam}
                        params={this.state.genres} />
+            <FilterParam type="composer" setActiveFilter={this.setActiveFilter} />
             <ParamCollection type="composer"
                        onClick={this.toggleParam}
                        params={this.renderedComposers()} />
@@ -163,8 +174,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-
-
-
-

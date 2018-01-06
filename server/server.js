@@ -28,51 +28,68 @@ router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "/dst/index.html"));
 });
 
-router.route("/api/book")
+router.route("/api/books")
 
   .get((req, res) => {
     Ref.distinct("book", (err, data) => {
       if (err) {
         res.send(err);
       }
-      res.json({ "book": data });
+      res.json(data);
     });
   });
 
-router.route("/api/composer")
+router.route("/api/composers")
 
   .get((req, res) => {
-    Ref.distinct("composer", (err, data) => {
+    Ref.aggregate([
+      {
+        $group: {"_id": "$genre",
+        genreSet: {$addToSet: "$composer"}}
+      }
+    ], (err, data) => {
       if (err) {
         res.send(err);
       }
-      res.json({ "composer": data });
+
+      let out = {};
+
+      data.forEach(entry => {
+        let genre = entry["_id"];
+        if (!out[genre]) {
+          out[genre] = entry.genreSet;
+        };
+      });
+
+      res.json(out);
     });
+
   });
 
-router.route("/api/genre")
+router.route("/api/genres")
 
   .get((req, res) => {
     Ref.distinct("genre", (err, data) => {
       if (err) {
         res.send(err);
       }
-      res.json({ "genre": data });
+      res.json(data);
     });
   });
 
-router.route("/api/ref")
+router.route("/api/refs")
 
   .post((req, res) => {
 
     let query = {};
-
+    console.log(req.body);
     for (let param in req.body) {
       if (req.body[param].length > 0) {
-        query[param] = { $in: req.body[param] };
+        let paramSingular = param.slice(0, -1);
+        query[paramSingular] = { $in: req.body[param] };
       }
     }
-
+    console.log(query);
     Ref.find(query, (err, refs) => {
       res.json({ "refs": refs });
     });

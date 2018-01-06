@@ -13,16 +13,16 @@ export default class ComposerFilter extends React.Component {
     this.props.filterParam("composer", event.target.value);
   }
 
-  handleGenreSelect(event) {
-    this.props.handleGenreSelect("genre", event.target.value);
+  handleGenreSelect(genre) {
+    this.props.handleGenreSelect("genre", genre);
   }
 
   render() {
     let genres = this.props.genres.map(genre => {
       return (
         <li key={genre}
-            onClick={this.handleGenreSelect}
-            className={this.props.selected.indexOf(genre) > -1
+            onClick={() => this.handleGenreSelect(genre)}
+            className={genre.selected
               ? "selected"
               : "notSelected"}>{genre}</li>
       );

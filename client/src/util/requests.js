@@ -5,5 +5,5 @@ export const fetchParams = (param) => {
 };
 
 export const fetchRefs = (params) => {
-  return axios.post("http://localhost:3000/api/ref", params);
+  return axios.post("http://localhost:3000/api/refs", params);
 };

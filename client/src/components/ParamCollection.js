@@ -2,7 +2,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export default class ParamList extends React.Component {
+export default class ParamCollection extends React.Component {
 
   constructor(props) {
     super(props);
@@ -14,18 +14,18 @@ export default class ParamList extends React.Component {
   }
 
   render() {
-    if (!this.props.params.length || !this.props.selected) {
+    if (!this.props.params.length) {
       return (
         <div>Loading...</div>
       );
     }
     let data = this.props.params.map(item => {
       return (
-        <li key={item}
+        <li key={item.title}
             onClick={() => this.handleClick(item)}
-            className={this.props.selected.indexOf(item) > -1
+            className={item.selected
               ? "selected"
-              : "notSelected"}>{item}</li>
+              : "notSelected"}>{item.title}</li>
       );
     });
     return (
@@ -36,7 +36,7 @@ export default class ParamList extends React.Component {
   }
 }
 
-ParamList.propTypes = {
+ParamCollection.propTypes = {
   type: PropTypes.string,
   onClick: PropTypes.func,
   params: PropTypes.array,

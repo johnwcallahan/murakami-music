@@ -29,7 +29,7 @@ export default class ParamCollection extends React.Component {
       );
     });
     return (
-      <ul className="list">
+      <ul className={"collection " + this.props.type + "-collection"}>
         {data}
       </ul>
     );

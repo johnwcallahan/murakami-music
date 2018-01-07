@@ -1,3 +1,5 @@
+@import "../../node_modules/react-slidedown/lib/slidedown.css";
+
 // Helpers
 @import "helpers/_typography";
 @import "helpers/_color";
@@ -10,7 +12,7 @@
 
 // Components
 @import "components/_app";
-@import "components/_paramList";
+@import "components/_paramCollection";
 @import "components/_header";
-@import "components/_list-container";
+@import "components/_collection-container";
 @import "components/_results";

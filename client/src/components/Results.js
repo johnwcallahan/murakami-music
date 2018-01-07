@@ -11,7 +11,7 @@ export default class Results extends React.Component {
     let refs = this.props.refs.map(ref => {
       return (
         <li key={ref["_id"]}>
-          <p className="ref-title">{ref.book} | {ref.composer} | {ref.piece} | {ref.genre}</p>
+          <p className="ref-title">{ref.book} | {ref.composer} | {ref.piece}</p>
           <p>{ref.quote} <small>{ref.page}</small></p>
 
         </li>

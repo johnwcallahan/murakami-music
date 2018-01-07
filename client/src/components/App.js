@@ -6,6 +6,7 @@ import ParamCollection from "./ParamCollection";
 import FilterParam from "./FilterParam";
 import Header from "./Header";
 import Results from "./Results";
+import { SlideDown } from "react-slidedown";
 // import SpotifyPlayer from "./SpotifyPlayer";
 
 import {
@@ -30,10 +31,12 @@ export default class App extends React.Component {
         genre: ""
       },
       refs: [],
-      spotifyIds: []
+      spotifyIds: [],
+      slidedownClosed: true
     };
     this.toggleParam = this.toggleParam.bind(this);
     this.setActiveFilter = this.setActiveFilter.bind(this);
+    this.toggleSlidedown = this.toggleSlidedown.bind(this);
   }
 
   componentDidMount() {
@@ -132,10 +135,16 @@ export default class App extends React.Component {
     }, () => this.getRefs());
   }
 
+  toggleSlidedown() {
+    this.setState({
+      slidedownClosed: !this.state.slidedownClosed
+    });
+  }
+
   // Filter composers whose genre is not selected and who are out of bounds in
   // the active filter
   renderedComposers() {
-    let composerFilter = this.state.activeFilter.composer;
+    let composerFilter = this.state.activeFilter.composer.toLowerCase();
     return this.state.composers.filter(composer => {
       return composer.genreSelected
       && (composerFilter == "" || composer.title.toLowerCase().indexOf(composerFilter) > -1);
@@ -151,20 +160,25 @@ export default class App extends React.Component {
           </div>
         </div>
         <div className="row content-container">
-          <div className="col-lg-2 col-xs-3 book-list-container list-container">
+          <div className="col-lg-2 col-xs-12 book-collection-container collection-container">
+            <h2 className="collection-header">Books</h2>
             <ParamCollection type="book"
                        onClick={this.toggleParam}
                        params={this.state.books} />
           </div>
-          <div className="col-lg-8 col-xs-6 ref-container">
+          <div className="col-lg-8 col-xs-12 ref-container">
             {/* <SpotifyPlayer tracks={this.state.spotifyIds} > */}
             <Results refs={this.state.refs} />
           </div>
-          <div className="col-lg-2 col-xs-3 composer-list-container list-container">
-            <ParamCollection type="genre"
-                       onClick={this.toggleParam}
-                       params={this.state.genres} />
+          <div className="col-lg-2 col-xs-12 composer-collection-container collection-container">
+            <h2 className="collection-header">Composers</h2>
             <FilterParam type="composer" setActiveFilter={this.setActiveFilter} />
+            <button onClick={this.toggleSlidedown} className="filter-by-genre">Filter by genre</button>
+            <SlideDown closed={this.state.slidedownClosed}>
+              <ParamCollection type="genre"
+                         onClick={this.toggleParam}
+                         params={this.state.genres} />
+            </SlideDown>
             <ParamCollection type="composer"
                        onClick={this.toggleParam}
                        params={this.renderedComposers()} />

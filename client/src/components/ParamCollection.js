@@ -16,16 +16,17 @@ export default class ParamCollection extends React.Component {
   render() {
     if (!this.props.params.length) {
       return (
-        <div>Loading...</div>
+        <div className="no-results">No results</div>
       );
     }
     let data = this.props.params.map(item => {
       return (
-        <li key={item.title}
-            onClick={() => this.handleClick(item)}
-            className={item.selected
-              ? "selected"
-              : "notSelected"}>{item.title}</li>
+        <li key={item.title}>
+          <button onClick={() => this.handleClick(item)}
+                  className={item.selected
+                    ? "selected"
+                    : "notSelected"}>{item.title}</button>
+        </li>
       );
     });
     return (

@@ -6,13 +6,21 @@ body, html {
   display: flex;
   height: 100vh;
   flex-direction: column;
-  padding-right: 60px;
-  padding-left: 60px;
+  @media screen and (min-width: 992px) {
+    padding: 0 100px;
+  }
 }
 
 .content-container {
   flex: 1;
-  overflow-y: scroll;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+
+  @media screen and (min-width: 992px) {
+
+    display: block;
+  }
 }
 
 

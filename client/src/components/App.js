@@ -17,10 +17,14 @@ import {
 
 import { fetchParams, fetchRefs } from "../util/requests";
 
+const BREAKPOINT_MD = 992;
+
 export default class App extends React.Component {
 
   constructor() {
     super();
+    let width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+
     this.state = {
       books: [],
       composers: [],
@@ -31,8 +35,8 @@ export default class App extends React.Component {
       refs: [],
       spotifyIds: [],
       slidedowns: {
-        "books": false,
-        "composers": false,
+        "books": width >= BREAKPOINT_MD ? false : true,
+        "composers": width >= BREAKPOINT_MD ? false : true,
         "genres": true
       }
     };
@@ -42,6 +46,18 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    window.addEventListener("resize", () => {
+      let width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+      if (width >= BREAKPOINT_MD) {
+        this.setState({
+          slidedowns: {
+            ...this.state.slidedowns,
+            books: false,
+            composers: false
+          }
+        });
+      }
+    });
     this.getParams();
   }
 
@@ -126,7 +142,7 @@ export default class App extends React.Component {
     // If type is "composer" or "book", simply update state with toggled params
     else {
       this.setState(() => {
-        return { [type]: toggled };
+        return { [type + "s"]: toggled };
       }, () => this.getRefs());
     }
   }
@@ -139,7 +155,9 @@ export default class App extends React.Component {
 
   toggleSlidedown(type) {
     this.setState({
-      slidedowns: { [type]: !this.state.slidedowns[type]}
+      slidedowns: {
+        ...this.state.slidedowns,
+        [type]: !this.state.slidedowns[type]}
     });
   }
 
@@ -163,9 +181,11 @@ export default class App extends React.Component {
         </div>
         <div className="row content-container">
 
-          <div className="col-md-3 col-xs-12 book-collection-container collection-container">
+          <div className="col-lg-2 col-md-3 col-xs-12 book-collection-container collection-container">
             <button onClick={() => this.toggleSlidedown("books")}
-                className="collection-header">Books</button>
+                className={this.state.slidedowns.books
+                ? "rounded-bottom-border collection-header" : "collection-header"}>
+                Books</button>
             <SlideDown closed={this.state.slidedowns.books}>
               <ParamCollection type="book"
                          onClick={this.toggleParam}
@@ -173,25 +193,28 @@ export default class App extends React.Component {
             </SlideDown>
           </div>
 
-          <div className="col-md-2 col-xs-12 col-md-push-7 composer-collection-container collection-container">
+          <div className="col-lg-2 col-md-3 col-xs-12 col-md-push-6 col-lg-push-8 composer-collection-container collection-container">
             <button onClick={() => this.toggleSlidedown("composers")}
-                    className="collection-header">Composers</button>
+                className={this.state.slidedowns.composers
+                ? "rounded-bottom-border collection-header" : "collection-header"}>
+                Composers</button>
             <SlideDown closed={this.state.slidedowns.composers}>
-              <FilterParam type="composer" setActiveFilter={this.setActiveFilter} />
+
               <button onClick={() => this.toggleSlidedown("genres")}
-                      className="filter-by-genre">Filter by genre</button>
+                      className="filter-by-genre">Genres</button>
               <SlideDown closed={this.state.slidedowns.genres}>
                 <ParamCollection type="genre"
                            onClick={this.toggleParam}
                            params={this.state.genres} />
               </SlideDown>
+              <FilterParam type="composer" setActiveFilter={this.setActiveFilter} />
               <ParamCollection type="composer"
                          onClick={this.toggleParam}
                          params={this.renderedComposers()} />
             </SlideDown>
           </div>
 
-          <div className="col-md-7 col-xs-12 col-md-pull-2 ref-container">
+          <div className="col-lg-8 col-md-6 col-xs-12 col-md-pull-3 col-lg-pull-2 ref-container">
             <Results refs={this.state.refs} />
           </div>
 

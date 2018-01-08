@@ -13,7 +13,7 @@ export default class FilterParam extends React.Component {
 
   render() {
     return (
-      <input placeholder="Filter composers..." className="filterParam" onChange={this.handleChange} />
+      <input placeholder="Filter..." className="filterParam" onChange={this.handleChange} />
     );
   }
 }

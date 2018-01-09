@@ -1,7 +1,0 @@
-- Style components
-- Responsive design
-- Add Spotify player
-- Add Bootstrap scss to project
-- Add testing
-- Setup production build
-- Deploy to Heroku

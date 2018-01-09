@@ -15,18 +15,15 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(morgan("dev"));
 app.use(cors());
+app.use(express.static("../client/dst"));
 
 // DB
-mongoose.connect(process.env.MONGO_URI);
+mongoose.connect(process.env.MONGODB_URI);
 mongoose.Promise = global.Promise;
 const Ref = require("./models/ref");
 
 // Routes
 const router = express.Router();
-
-router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname + "/dst/index.html"));
-});
 
 router.route("/api/books")
 

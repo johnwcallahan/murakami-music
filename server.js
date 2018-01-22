@@ -1,10 +1,8 @@
-// const _ = require("lodash");
 const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
-// const path = require("path");
 
 // Config
 require("dotenv").config();

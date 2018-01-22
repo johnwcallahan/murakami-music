@@ -1,13 +1,10 @@
-// import _ from "lodash";
 import React from "react";
 
-// import ComposerFilter from "./ComposerFilter";
 import ParamCollection from "./ParamCollection";
 import FilterParam from "./FilterParam";
 import Header from "./Header";
 import Results from "./Results";
 import { SlideDown } from "react-slidedown";
-// import SpotifyPlayer from "./SpotifyPlayer";
 
 import {
   findParamInState,

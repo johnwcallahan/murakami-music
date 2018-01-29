@@ -1,0 +1,22 @@
+{
+  "books": [
+    {
+      "book": "Kafka on the Shore",
+      "selected": false
+    }
+  ],
+  "composers": [
+    {
+      "composer": "Cream",
+      "genre": "Pop",
+      "selected": true
+    }
+  ],
+  "genres": [
+    {
+      "genre": "Pop",
+      "selected": true
+    }
+  ],
+  "composerFilter": "Cr" 
+}

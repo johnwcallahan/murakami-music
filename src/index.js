@@ -8,23 +8,27 @@ import rootReducer from "./reducers";
 import {
   toggleBook,
   toggleComposer,
-  toggleGenre,
-  setFilter
+  // toggleGenre,
+  // setFilter
 } from "./actions";
 
-const store = createStore(rootReducer);
+import state from "./data";
+
+import getReferences from "./logic/getReferences";
+
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 console.log(store.getState());
 
+store.dispatch(toggleBook("Kafka on the Shore"));
 store.dispatch(toggleBook("After Dark"));
-store.dispatch(toggleComposer("Liszt"));
-store.dispatch(toggleGenre("Pop"));
-console.log(store.getState());
-store.dispatch(toggleGenre("Classical"));
-store.dispatch(setFilter("Lis"));
+store.dispatch(toggleComposer("Beethoven"));
 
-console.log(store.getState());
-
+console.log("REFS:");
+console.log(getReferences(store.getState()));
 
 
 

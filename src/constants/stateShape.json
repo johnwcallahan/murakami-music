@@ -1,22 +1,25 @@
 {
-  "books": [
-    {
+  "books": {
+    "Kafka on the Shore": {
       "book": "Kafka on the Shore",
-      "selected": false
+      "selected": true
+    },
+    "After Dark": {
+      "book": "After Dark",
+      "selected": true
     }
-  ],
-  "composers": [
-    {
-      "composer": "Cream",
+  },
+  "composers": {
+    "Beethoven": {
+      "composer": "Beethoven",
+      "genre": "Classical",
+
+    }
+  },
+  "genres": {
+    "Pop": {
       "genre": "Pop",
       "selected": true
     }
-  ],
-  "genres": [
-    {
-      "genre": "Pop",
-      "selected": true
-    }
-  ],
-  "composerFilter": "Cr" 
+  }
 }

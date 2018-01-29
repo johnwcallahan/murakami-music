@@ -1,35 +1,35 @@
 import books from "../data/books.json";
 import composersGenres from "../data/composersGenres.json";
 import genres from "../data/genres.json";
-import references from "../data/references.json";
 
-var state = {};
+var state = {
+  books: {},
+  composers: {},
+  genres: {},
+  composerFilter: ""
+};
 
-state.books = books.map(book => {
-  return { 
-    "book": book, 
-    "selected": false 
+books.forEach(book => {
+  state.books[book] = {
+    "book": book,
+    "selected": false
   };
 });
 
-let composers = [];
 for (let composer in composersGenres) {
-  composers.push({
+  state.composers[composer] = {
     "composer": composer,
     "genre": composersGenres[composer],
     "selected": false
-  });
+  };
 }
-state.composers = composers;
 
-state.genres = genres.map(genre => {
-  return {
+genres.forEach(genre => {
+  state.genres[genre] = {
     "genre": genre,
-    "selected": true
+    "selected": false
   };
 });
 
-state.references = references;
-state.composerFilter = "";
-
+console.log(state);
 export default state;

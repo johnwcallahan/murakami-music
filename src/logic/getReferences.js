@@ -27,25 +27,21 @@ function theStateIsInvalid(state) {
 }
 
 function thereAreNoBooksSelected(state) {
-  for (let i = 0; i < state.books.length; i++) {
-    if (state.books[i].selected)
+  for (let book in state.books) {
+    if (state.books[book].selected)
       return false;
   }
   return true;
 }
 
 function thereAreNoComposersSelected(state) {
-  for (let i = 0; i < state.composers.length; i++) {
-    if (state.composers[i].selected)
+  for (let composer in state.composers) {
+    if (state.composers[composer].selected)
       return false;
   }
-  return true;
+  return true; 
 }
 
 function isPropertyOfTypeSelected(state, property, type) {
-  let foundProperty = find(state[type + "s"], {[type]: property});
-  if (foundProperty && foundProperty.selected)
-    return foundProperty.selected;
-
-  return false;
+  return state[type + "s"][property].selected;
 }

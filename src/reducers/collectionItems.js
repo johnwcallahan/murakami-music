@@ -6,16 +6,16 @@ import {
 
 import DEFAULT_STATE from "../data";
 
-
-
 export function toggleBook(state=DEFAULT_STATE.books, action) {
   switch (action.type) {
     case TOGGLE_BOOK:
-      return state.map(b => {
-        if (b.book == action.book)
-          b.selected = !b.selected;
-        return b;
-      });
+      var stateCopy = Object.assign({}, state);
+      for (let b in stateCopy) {
+        if (state[b].book == action.book) {
+          state[b].selected = !state[b].selected;
+        }
+      }
+      return stateCopy;
     default:
       return state;
   }
@@ -24,11 +24,13 @@ export function toggleBook(state=DEFAULT_STATE.books, action) {
 export function toggleComposer(state=DEFAULT_STATE.composers, action) {
   switch (action.type) {
     case TOGGLE_COMPOSER:
-      return state.map(c => {
-        if (c.composer == action.composer)
-          c.selected = !c.selected;
-        return c;
-      });
+      var stateCopy = Object.assign({}, state);
+      for (let c in stateCopy) {
+        if (state[c].composer == action.composer) {
+          state[c].selected = !state[c].selected;
+        }
+      }
+      return stateCopy;  
     default:
       return state;
   }
@@ -37,11 +39,13 @@ export function toggleComposer(state=DEFAULT_STATE.composers, action) {
 export function toggleGenre(state=DEFAULT_STATE.genres, action) {
   switch (action.type) {
     case TOGGLE_GENRE:
-      return state.map(g => {
-        if (g.genre == action.genre)
-          g.selected = !g.selected;
-        return g;
-      });
+      var stateCopy = Object.assign({}, state);
+      for (let g in stateCopy) {
+        if (state[g].book == action.genre) {
+          state[g].selected = !state[g].selected;
+        }
+      }
+      return stateCopy;     
     default:
       return state;
   }

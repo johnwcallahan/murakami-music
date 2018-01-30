@@ -31,5 +31,4 @@ genres.forEach(genre => {
   };
 });
 
-console.log(state);
 export default state;

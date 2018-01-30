@@ -12,7 +12,7 @@ import {
   // setFilter
 } from "./actions";
 
-import state from "./data";
+// import state from "./data";
 
 import getReferences from "./logic/getReferences";
 
@@ -21,17 +21,15 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-console.log(store.getState());
+// console.log(store.getState());
 
 store.dispatch(toggleBook("Kafka on the Shore"));
 store.dispatch(toggleBook("After Dark"));
 store.dispatch(toggleComposer("Beethoven"));
 
+console.log(store.getState());
 console.log("REFS:");
 console.log(getReferences(store.getState()));
-
-
-
 
 import App from "./components/App";
 

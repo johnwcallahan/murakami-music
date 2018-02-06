@@ -1,11 +1,19 @@
 import React from "react";
 
+import BookCollectionContainer from "../containers/BookCollectionContainer";
+import ComposerCollectionContainer from "../containers/ComposerCollectionContainer";
+
 export default class App extends React.Component {
   constructor() {
     super();
   }
 
   render() {
-    return <h1>Hello World</h1>;
+    return (
+      <div>
+        <BookCollectionContainer />
+        <ComposerCollectionContainer />
+      </div>
+    );
   }
 }

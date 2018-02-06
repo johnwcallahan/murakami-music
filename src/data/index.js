@@ -27,7 +27,7 @@ for (let composer in composersGenres) {
 genres.forEach(genre => {
   state.genres[genre] = {
     "genre": genre,
-    "selected": false
+    "selected": true
   };
 });
 

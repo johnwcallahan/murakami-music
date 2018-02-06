@@ -10,7 +10,10 @@ export default function getReferences(state) {
     return REFERENCES;
 
   if (thereAreNoBooksSelected(state))
-    return REFERENCES.filter(r => isPropertyOfTypeSelected(state, r.composer, "composer"));
+    return REFERENCES.filter(r => {
+      isPropertyOfTypeSelected(state, r.composer, "composer")
+      && isPropertyOfTypeSelected(state, r.genre, "genre");
+    });
 
   if (thereAreNoComposersSelected(state)) {
     return REFERENCES.filter(r => isPropertyOfTypeSelected(state, r.book, "book"));
@@ -18,6 +21,7 @@ export default function getReferences(state) {
 
   return REFERENCES.filter(r => {
     return isPropertyOfTypeSelected(state, r.composer, "composer")
+        && isPropertyOfTypeSelected(state, r.genre, "genre")
         && isPropertyOfTypeSelected(state, r.book, "book");
   });
 }

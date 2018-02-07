@@ -10,7 +10,7 @@ import rootReducer from "./reducers";
 import {
   toggleBook,
   toggleComposer,
-  // toggleGenre,
+  toggleGenre,
   // setFilter
 } from "./actions";
 

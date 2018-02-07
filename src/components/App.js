@@ -1,5 +1,6 @@
 import React from "react";
 
+import Header from "./Header";
 import BookCollectionContainer from "../containers/BookCollectionContainer";
 import ComposerCollectionContainer from "../containers/ComposerCollectionContainer";
 import GenreCollectionContainer from "../containers/GenreCollectionContainer";
@@ -11,10 +12,21 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <BookCollectionContainer />
-        <ComposerCollectionContainer />
-        <GenreCollectionContainer />
+      <div className="container-fluid app-container">
+        <div className="row header-container">
+          <div className="col-xs-12">
+            <Header />
+          </div>
+        </div>
+        <div className="row content-container">
+          <div className="col-lg-2 col-md-3 col-xs-12 book-collection-container collection-container">
+            <BookCollectionContainer />
+          </div>
+          <div className="col-lg-2 col-md-3 col-xs-12 col-md-push-6 col-lg-push-8 composer-collection-container collection-container">
+            <GenreCollectionContainer />
+            <ComposerCollectionContainer />
+          </div>
+        </div>
       </div>
     );
   }

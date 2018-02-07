@@ -21,7 +21,12 @@ const BookCollection = ({books, onClick}) => {
     return <div className="no-results">No results</div>;
   }
   
-  return <ul className="collection book-collection">{bookCollection}</ul>;
+  return (
+    <div>
+      <button className="collection-header">Books</button>
+      <ul className="collection book-collection">{bookCollection}</ul>
+    </div>
+  );
 };
 
 BookCollection.propTypes = {

@@ -24,7 +24,11 @@ const ComposerCollection = ({composers, genres, onClick}) => {
     return <div className="no-results">No results</div>;
   }
   
-  return <ul className="collection composer-collection">{composerCollection}</ul>;
+  return (
+    <div>
+      <ul className="collection composer-collection">{composerCollection}</ul>;
+    </div>
+  );
 };
 
 ComposerCollection.propTypes = {

@@ -21,7 +21,12 @@ const GenreCollection = ({genres, onClick}) => {
     return <div className="no-results">No results</div>;
   }
   
-  return <ul className="collection genre-collection">{genreCollection}</ul>;
+  return (
+    <div>
+      <button className="collection-header">Composers</button>
+      <ul className="collection genre-collection">{genreCollection}</ul>
+    </div>
+  );
 };
 
 GenreCollection.propTypes = {

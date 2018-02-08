@@ -3,26 +3,17 @@ import REFERENCES from "../data/references.json";
 import find from "lodash/find";
 
 export default function getReferences(state) {
+
   if (theStateIsInvalid(state))
     return REFERENCES;
 
-  if (thereAreNoBooksSelected(state) && thereAreNoComposersSelected(state))
-    return REFERENCES;
-
-  if (thereAreNoBooksSelected(state))
-    return REFERENCES.filter(r => {
-      isPropertyOfTypeSelected(state, r.composer, "composer")
-      && isPropertyOfTypeSelected(state, r.genre, "genre");
-    });
-
-  if (thereAreNoComposersSelected(state)) {
-    return REFERENCES.filter(r => isPropertyOfTypeSelected(state, r.book, "book"));
-  }
+  let noBooksSelected = thereAreNoBooksSelected(state);
+  let noComposersSelected = thereAreNoComposersSelected(state);
 
   return REFERENCES.filter(r => {
-    return isPropertyOfTypeSelected(state, r.composer, "composer")
+    return (noComposersSelected || isPropertyOfTypeSelected(state, r.composer, "composer"))
         && isPropertyOfTypeSelected(state, r.genre, "genre")
-        && isPropertyOfTypeSelected(state, r.book, "book");
+        && (noBooksSelected || isPropertyOfTypeSelected(state, r.book, "book"));
   });
 }
 

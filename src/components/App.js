@@ -4,6 +4,7 @@ import Header from "./Header";
 import BookCollectionContainer from "../containers/BookCollectionContainer";
 import ComposerCollectionContainer from "../containers/ComposerCollectionContainer";
 import GenreCollectionContainer from "../containers/GenreCollectionContainer";
+import ReferencesContainer from "../containers/ReferencesContainer";
 
 export default class App extends React.Component {
   constructor() {
@@ -26,7 +27,11 @@ export default class App extends React.Component {
             <GenreCollectionContainer />
             <ComposerCollectionContainer />
           </div>
+          <div className="col-lg-8 col-md-6 col-xs-12 col-md-pull-3 col-lg-pull-2 ref-container">
+            <ReferencesContainer />
+          </div>          
         </div>
+        
       </div>
     );
   }

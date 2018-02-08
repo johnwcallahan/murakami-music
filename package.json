@@ -43,6 +43,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.6",
+    "shortid": "^2.2.8",
     "style-loader": "^0.19.0",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.7"
@@ -64,7 +65,7 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.0",
     "jest": "^19.0.2",
-    "jsonfile": "^4.0.0",    
+    "jsonfile": "^4.0.0",
     "react-test-renderer": "^15.4.2"
   }
 }

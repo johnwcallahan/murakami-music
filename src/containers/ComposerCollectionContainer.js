@@ -5,7 +5,8 @@ import ComposerCollection from "../components/ComposerCollection";
 
 const mapStateToProps = state => ({
   composers: state.composers,
-  genres: state.genres
+  genres: state.genres,
+  composerFilter: state.composerFilter
 });
 
 const mapDispatchToProps = dispatch => ({

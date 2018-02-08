@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import shortid from "shortid";
 
 const References = ({references}) => {
   
   references = references.map(ref => {
     return (
-      <li key={ref["_id"]}>
+      <li key={shortid.generate()}>
         <p className="ref-title">{ref.book} | {ref.composer} | {ref.piece}</p>
         <p>{ref.quote} <small>{ref.page}</small></p>
 

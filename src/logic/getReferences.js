@@ -11,9 +11,9 @@ export default function getReferences(state) {
   let noComposersSelected = thereAreNoComposersSelected(state);
 
   return REFERENCES.filter(r => {
-    return (noComposersSelected || isPropertyOfTypeSelected(state, r.composer, "composer"))
-        && isPropertyOfTypeSelected(state, r.genre, "genre")
-        && (noBooksSelected || isPropertyOfTypeSelected(state, r.book, "book"));
+    return (noBooksSelected || isPropertyOfTypeSelected(state, r.book, "book"))
+        && (noComposersSelected || isPropertyOfTypeSelected(state, r.composer, "composer"))
+        && isPropertyOfTypeSelected(state, r.genre, "genre");
   });
 }
 

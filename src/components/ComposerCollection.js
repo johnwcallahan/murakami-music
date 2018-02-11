@@ -29,7 +29,7 @@ const ComposerCollection = ({composers, genres, composerFilter, onClick}) => {
   }
   
   return (
-    <div>
+    <div className="composer-list">
       <ul className="collection composer-collection">{composerCollection}</ul>
     </div>
   );

@@ -2,6 +2,9 @@
   height: auto;
   overflow-y: auto;
   margin-bottom: 16px;
+  display: table;
+  display: flex;
+  flex-direction: column;
 
   @media screen and (min-width: 992px) {
     margin-bottom: 0;
@@ -20,4 +23,24 @@
 
 .collection-container::-webkit-scrollbar-track {
   background: #E7E7E7;
+}
+
+.composer-collection {
+    li:last-child button {
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+}
+
+.book-collection {
+  li:last-child button {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+}
+
+.composer-list {
+  flex: 1;
+  height: 100%;
+  overflow-y: scroll;
 }

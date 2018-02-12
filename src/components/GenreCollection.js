@@ -23,7 +23,7 @@ const GenreCollection = ({genres, onClick}) => {
   
   return (
     <div>
-      <button className="collection-header">Composers</button>
+      <div className="collection-header">Composers</div>
       <ul className="collection genre-collection">{genreCollection}</ul>
     </div>
   );

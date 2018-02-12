@@ -23,7 +23,7 @@ const BookCollection = ({books, onClick}) => {
   
   return (
     <div style={{"height": "100%"}}>
-      <button className="collection-header">Books</button>
+      <div className="collection-header">Books</div>
       <div className="book-collection-wrap"> 
         <ul className="collection book-collection">{bookCollection}</ul>
       </div>

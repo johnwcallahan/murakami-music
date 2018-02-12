@@ -6,13 +6,8 @@
 @import "helpers/_fonts";
 @import "helpers/_mixins";
 
-
-// Pages
-
-
 // Components
 @import "components/_app";
-@import "components/_paramCollection";
 @import "components/_header";
-@import "components/_collection-container";
-@import "components/_results";
+@import "components/_collection";
+@import "components/_references";

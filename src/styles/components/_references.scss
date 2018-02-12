@@ -1,0 +1,41 @@
+.ref-container {
+  font-family: $primary-font;
+  font-size: $font-size-medium;
+  font-weight: 300;
+  padding: 0 32px;
+  height: 100%;
+  overflow-y: auto;
+  margin-top: 1px;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #858e99;
+    border-radius: 20px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #E7E7E7;
+  }
+
+  @media screen and (min-width: 1200px) {
+    padding: 0 64px;
+  }
+}
+
+.ref-list {
+  list-style-type: none;
+  padding-left: 0;
+
+  li {
+    line-height: 26px;
+    padding: 0 0 12px 0;
+  }
+}
+
+.ref-title {
+  font-size: $font-size-enhanced;
+  font-weight: 600;
+}

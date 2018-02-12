@@ -22,9 +22,11 @@ const BookCollection = ({books, onClick}) => {
   }
   
   return (
-    <div>
+    <div style={{"height": "100%"}}>
       <button className="collection-header">Books</button>
-      <ul className="collection book-collection">{bookCollection}</ul>
+      <div className="book-list"> 
+        <ul className="collection book-collection">{bookCollection}</ul>
+      </div>
     </div>
   );
 };

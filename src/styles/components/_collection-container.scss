@@ -1,6 +1,6 @@
 .collection-container {
   height: auto;
-  overflow-y: auto;
+  // overflow-y: auto;
   margin-bottom: 16px;
   display: table;
   display: flex;
@@ -10,6 +10,16 @@
     margin-bottom: 0;
     height: 100%;
   }
+}
+
+.book-list {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;  
+}
+
+.composer-list {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;  
 }
 
 .collection-container::-webkit-scrollbar {
@@ -41,6 +51,20 @@
 
 .composer-list {
   flex: 1;
-  height: 100%;
+  height: 200px;
   overflow-y: scroll;
+
+  @media screen and (min-width: 992px) {
+    height: 100%;
+  }
+}
+
+.book-list {
+  flex: 1;
+  height: 200px;
+  overflow-y: scroll;
+
+  @media screen and (min-width: 992px) {
+    height: 100%;
+  }
 }

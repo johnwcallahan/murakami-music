@@ -4,6 +4,7 @@
 @import "helpers/_typography";
 @import "helpers/_color";
 @import "helpers/_fonts";
+@import "helpers/_responsive";
 @import "helpers/_mixins";
 
 // Components
@@ -11,3 +12,4 @@
 @import "components/_header";
 @import "components/_collection";
 @import "components/_references";
+@import "components/_spotify-player";

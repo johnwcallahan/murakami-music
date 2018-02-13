@@ -6,7 +6,7 @@ body, html {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  @media screen and (min-width: 992px) {
+  @media screen and (min-width: $bp-large) {
     height: 100vh;
     padding: 0 100px;
   }
@@ -18,7 +18,11 @@ body, html {
   padding-bottom: 0;
   overflow: hidden;
 
-  @media screen and (min-width: 992px) {
+  @media screen and (min-width: $bp-large) {
     display: block;
   }
+}
+
+.center-col {
+  height: 100%;
 }

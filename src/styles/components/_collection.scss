@@ -19,7 +19,7 @@
     background: #E7E7E7;
   }
 
-  @media screen and (min-width: 992px) {
+  @media screen and (min-width: $bp-large) {
     margin-bottom: 0;
     height: 100%;
   }  
@@ -33,20 +33,20 @@
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;  
 
-  @media screen and (min-width: 992px) {
+  @media screen and (min-width: $bp-large) {
     height: 100%;
   }
 }
 
 .book-collection-wrap {
   flex: 1;
-  height: 200px;
+  height: 300px;
   overflow-y: scroll;
 
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;    
 
-  @media screen and (min-width: 992px) {
+  @media screen and (min-width: $bp-large) {
     height: 100%;
   }
 }
@@ -71,7 +71,7 @@
   width: 100%;
   border: none;
 
-  @media screen and (min-width: 992px) {
+  @media screen and (min-width: $bp-large) {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }

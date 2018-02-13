@@ -6,6 +6,7 @@ import ComposerCollectionContainer from "../containers/ComposerCollectionContain
 import GenreCollectionContainer from "../containers/GenreCollectionContainer";
 import ReferencesContainer from "../containers/ReferencesContainer";
 import ComposerFilterContainer from "../containers/ComposerFilterContainer";
+import SpotifyPlayerContainer from "../containers/SpotifyPlayerContainer";
 
 export default class App extends React.Component {
   constructor() {
@@ -29,8 +30,11 @@ export default class App extends React.Component {
             <ComposerFilterContainer />
             <ComposerCollectionContainer />
           </div>
-          <div className="col-lg-8 col-md-6 col-xs-12 col-md-pull-3 col-lg-pull-2 ref-container">
-            <ReferencesContainer />
+          <div className="col-lg-8 col-md-6 col-xs-12 col-md-pull-3 col-lg-pull-2 center-col">
+            <SpotifyPlayerContainer />
+            <div className="ref-container">
+              <ReferencesContainer />
+            </div>
           </div>          
         </div>
         

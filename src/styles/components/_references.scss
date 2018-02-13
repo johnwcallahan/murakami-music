@@ -2,7 +2,7 @@
   font-family: $primary-font;
   font-size: $font-size-medium;
   font-weight: 300;
-  padding: 0 32px;
+
   height: 100%;
   overflow-y: auto;
   margin-top: 1px;
@@ -21,7 +21,7 @@
   }
 
   @media screen and (min-width: 1200px) {
-    padding: 0 64px;
+    padding: 0 12px;
   }
 }
 

@@ -1,25 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
+import shortid from "shortid";
 
-export default class SpotifyPlayer extends React.Component {
-  render() {
-
-    let allSpotifyIDs = this.props.tracks.join(",");
-
-    return (
-      <div className="spotify-player-container">
-        <iframe src={"https://embed.spotify.com/?theme=white&uri=spotify:trackset:Playlist:" + allSpotifyIDs}
-                width="300"
-                height="80"
-                frameBorder="0"
-                allowTransparency="true"
-                className="player">
-        </iframe>
-      </div>
-    );
-  }
-}
+const SpotifyPlayer = ({spotifyIds}) => {
+  
+  return (
+    <div className="spotify-container">
+      <button className="create-playlist">Create Playlist</button>
+      <iframe className="spotify-player" src="https://open.spotify.com/embed?uri=spotify:user:spotify:playlist:37i9dQZF1DX9uKNf5jGX6m&theme=white"
+        frameBorder="0" allowTransparency="true"></iframe>
+    </div>
+  );
+};
 
 SpotifyPlayer.propTypes = {
-  tracks: PropTypes.array
+  spotifyIds: PropTypes.array
 };
+
+export default SpotifyPlayer;

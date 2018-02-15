@@ -1,52 +1,85 @@
 .spotify-container {
-  margin-bottom: 18px;
   text-align: center;
+  position: relative;
   display: flex;
   flex-direction: column;
+  border-radius: 6px;
+  justify-content: center;
+  height: 100px;
 
-  @media screen and (min-width: $bp-small) {
+  @media screen and (min-width: $bp-large) {
     flex-direction: row;
     align-items: center;
   }
   
   @media screen and (min-width: $bp-large) {
-    padding-left: 12px;
+    width: 100%;
   }
 }
 
 .create-playlist {
   border-radius: 500px;
-  display: inline;
+  display: inline-block;
   background-color: #2EBD59;
   color: white;
-  padding: 7px 65px;
   line-height: 21px;
-  height: 40px;
   border: none;
   text-transform: uppercase;
   font-family: $primary-font;
+  height: 80px;
+  margin-bottom: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 18px;
+  border-bottom-left-radius: 18px;
+  font-size: 18px;
+  z-index: 2;
+  opacity: 0.9;
+  position: absolute;
+
+  width: 10%;    
   
   &:hover {
     background-color: #2FD565;
   }
 
   @media screen and (min-width: $bp-small) {
-    width: 40%;
-    padding: 0 8px;
+  font-size: 27px;   
+  }
+
+
+  @media screen and (min-width: $bp-large) {
+    padding: 0 15px;
+    left: 15px;  
+    width: 14%;   
+    font-size: 23px;     
   }
 }
 
-.spotify-player {
-  margin: 18px auto;
+.button-container {
   width: 100%;
-  height: 80px;
+  text-align: center;
+}
 
-  @media screen and (min-width: $bp-small) {
-    width: 60%;
-    padding: 0 8px;
-  }  
+.spotify-player {
+  z-index: 1;  
+  margin: 18px auto;
+  height: 80px;
+  margin: 0 auto;
+  border: 0;
+  position: absolute;
+  // padding: 0 15px;
+  left: 9.8%;
+  width: 90%;  
 
   @media screen and (min-width: $bp-large) {
-    margin-top: 0;
+    left: 17.7%;
+    width: 82.3%;    
+  }  
+  
+  @media screen and (min-width: $bp-large) {
+
   }
+
+
 }

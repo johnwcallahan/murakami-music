@@ -1,2 +1,11 @@
 $bp-small: 520px;
 $bp-large: 992px;
+
+.vertical-center-parent {
+  position: relative;
+  
+  @media screen and (min-width: $bp-large) {
+    display: flex;
+    align-content: center;
+  }
+}

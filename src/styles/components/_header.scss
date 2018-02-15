@@ -1,9 +1,14 @@
+.header-container {
+  padding: 9px 0;
+}
+
 .header {
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
   
   h1 {
     font-family: $heading-font;
     color: $primary-color;
+    // display: inline-block;
   }
 
   p {
@@ -11,5 +16,6 @@
     color: $secondary-color;
     font-size: $font-size-enhanced;
     font-weight: lighter;
+    // display: inline-block;
   }
 }

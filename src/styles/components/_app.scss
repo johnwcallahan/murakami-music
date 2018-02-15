@@ -1,7 +1,18 @@
 body, html {
   height: 100%;
+  width: 100%;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  box-sizing: border-box;
 }
 
+#root {
+  height: 100%;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
 .app-container {
   display: flex;
   min-height: 100vh;

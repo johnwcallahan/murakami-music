@@ -16,9 +16,12 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="container-fluid app-container">
-        <div className="row header-container">
-          <div className="col-xs-12">
+        <div className="row header-container vertical-center-parent">
+          <div className="col-lg-8 col-md-7 col-xs-12">
             <Header />
+          </div>
+          <div className="col-lg-4 col-md-5 col-xs-12 vertical-center-parent">
+            <SpotifyPlayerContainer />
           </div>
         </div>
         <div className="row content-container">
@@ -31,7 +34,8 @@ export default class App extends React.Component {
             <ComposerCollectionContainer />
           </div>
           <div className="col-lg-8 col-md-6 col-xs-12 col-md-pull-3 col-lg-pull-2 center-col">
-            <SpotifyPlayerContainer />
+            <div className="button-container">
+            </div>
             <div className="ref-container">
               <ReferencesContainer />
             </div>

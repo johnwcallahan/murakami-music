@@ -1,18 +1,5 @@
 import * as types from "../constants/ActionTypes";
 
-export function requestReferences() {
-  return {
-    type: types.REQUEST_REFERENCES
-  };
-}
-
-export function receiveReferences(references) {
-  return {
-    type: types.RECEIVE_REFERENCES,
-    references
-  };
-}
-
 export function toggleBook(book) {
   return {
     type: types.TOGGLE_BOOK,

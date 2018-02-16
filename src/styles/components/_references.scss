@@ -39,3 +39,20 @@
   font-size: $font-size-enhanced;
   font-weight: 600;
 }
+
+.book {
+  color: $primary-color;
+  font-weight: 300;  
+}
+
+.listen-button {
+  background-color: white;
+  border-radius: 18px;
+  color: #4BC36E;
+  margin: 0 3px;
+  border: none;
+
+  &:hover {
+    color: #2FD565;
+  }
+}

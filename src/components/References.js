@@ -2,14 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import shortid from "shortid";
 
-const References = ({references}) => {
+const References = ({references, onClick}) => {
   
   references = references.map(ref => {
     return (
       <li key={shortid.generate()}>
         <p className="ref-title">
           <span className="composer">{ref.composer}: {ref.piece}&nbsp;
-            <button title={"Listen to " + ref.piece} className="listen-button"><i className="fas fa-music"></i></button>
+            <button title={"Listen to " + ref.piece} 
+                    className="listen-button"
+                    onClick={() => onClick(ref.spotifyId[0])}>
+              <i className="fas fa-music"></i>
+            </button>
           </span>
           <br/>
           <span className="book">| {ref.book}</span>
@@ -27,7 +31,8 @@ const References = ({references}) => {
 };
 
 References.propTypes = {
-  references: PropTypes.array
+  references: PropTypes.array,
+  onClick: PropTypes.func
 };
 
 export default References;

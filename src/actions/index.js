@@ -21,6 +21,20 @@ export function toggleGenre(genre) {
   };
 }
 
+export function setTrack(track) {
+  return {
+    type: types.SET_TRACK,
+    track
+  };
+}
+
+export function setPlaylist(playlist) {
+  return {
+    type: types.SET_PLAYLIST,
+    playlist
+  };
+}
+
 export function setFilter(filter) {
   return {
     type: types.SET_FILTER,

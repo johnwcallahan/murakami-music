@@ -21,5 +21,7 @@
       "genre": "Pop",
       "selected": true
     }
-  }
+  },
+  "currentTrack": "",
+  "currentPlaylist": ""
 }

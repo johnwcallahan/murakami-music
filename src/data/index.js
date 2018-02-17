@@ -6,7 +6,9 @@ var state = {
   books: {},
   composers: {},
   genres: {},
-  composerFilter: ""
+  composerFilter: "",
+  currentTrack: "",
+  currentPlaylist: ""
 };
 
 books.forEach(book => {

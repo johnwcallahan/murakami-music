@@ -4,3 +4,4 @@ export const TOGGLE_GENRE = "TOGGLE_GENRE";
 export const SET_TRACK = "SET_TRACK";
 export const SET_PLAYLIST = "SET_PLAYLIST";
 export const SET_FILTER = "SET_FILTER";
+export const TOGGLE_SPOTIFY_SETTINGS = "TOGGLE_SPOTIFY_SETTINGS";

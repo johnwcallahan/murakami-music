@@ -17,7 +17,7 @@
   }
 }
 
-.create-playlist {
+.toggle-settings {
   border-radius: 500px;
   display: inline-block;
   background-color: #2EBD59;
@@ -34,8 +34,11 @@
   border-bottom-left-radius: 18px;
   font-size: 18px;
   z-index: 2;
-  opacity: 0.9;
+  opacity: 1;
   position: absolute;
+  transition: 0.4s ease-in-out 0s;
+  transition-delay: 0s;
+
 
   width: 10%;    
   
@@ -46,14 +49,56 @@
   @media screen and (min-width: $bp-small) {
   font-size: 27px;   
   }
-
-
+  
   @media screen and (min-width: $bp-large) {
     padding: 0 15px;
-    left: 15px;  
-    width: 14%;   
-    font-size: 23px;     
+    width: 14%;  
+    left: 0;
+    font-size: 23px;
   }
+}
+
+.spotify-settings {
+  @extend .toggle-settings;
+  border-radius: 0;
+  width: 1px;
+  padding: 0;
+  left: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media screen and (min-width: $bp-large) {
+    left: 14%;
+  }
+}
+
+.connect-spotify {
+  display: none;
+  background-color: inherit;
+  opacity: 0;
+  border: none;
+  -webkit-animation: fadein .6s linear .3s forwards; /* Safari, Chrome and Opera > 12.1 */
+     -moz-animation: fadein .6s linear .3s forwards; /* Firefox < 16 */
+      -ms-animation: fadein .6s linear .3s forwards; /* Internet Explorer */
+       -o-animation: fadein .6s linear .3s forwards; /* Opera < 12.1 */
+          animation: fadein .6s linear .3s forwards;    
+}
+
+.connect-spotify.opened {
+  display: block;
+  padding: 0;
+}
+
+.spotify-settings.opened {
+  width: 90%;
+  @media screen and (min-width: $bp-large) {
+    width: 86%;
+  }
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 .button-container {
@@ -68,17 +113,14 @@
   margin: 0 auto;
   border: 0;
   position: absolute;
-  left: 9.8%;
+  left: 10%;
   width: 90%;  
 
   @media screen and (min-width: $bp-large) {
-    left: 17.7%;
-    width: 82.3%;    
+    left: 14%;
+    width: 86%;
   }  
-  
-  @media screen and (min-width: $bp-large) {
 
-  }
 
 
 }

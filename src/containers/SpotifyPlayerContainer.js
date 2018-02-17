@@ -1,14 +1,21 @@
 import { connect } from "react-redux";
+import { toggleSpotifySettings } from "../actions";
 
 import SpotifyPlayer from "../components/SpotifyPlayer";
 
 const mapStateToProps = state => ({
   currentTrack: state.currentTrack,
-  currentPlaylist: state.currentPlaylist
+  currentPlaylist: state.currentPlaylist,
+  spotifySettingsToggled: state.spotifySettingsToggled
+});
+
+const mapDispatchToProps = dispatch => ({
+  onSettingsClick: () => dispatch(toggleSpotifySettings())
 });
 
 const SpotifyPlayerContainer = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(SpotifyPlayer);
 
 export default SpotifyPlayerContainer;

@@ -41,3 +41,9 @@ export function setFilter(filter) {
     filter
   };
 }
+
+export function toggleSpotifySettings() {
+  return {
+    type: types.TOGGLE_SPOTIFY_SETTINGS
+  };
+}

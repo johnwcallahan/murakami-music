@@ -6,7 +6,7 @@ import {
   toggleGenre,
 } from "./collectionItems";
 import setFilter from "./composerFilter";
-import { setTrack, setPlaylist } from "./spotifyPlayer";
+import { setTrack, setPlaylist, toggleSpotifySettings } from "./spotifyPlayer";
 
 export default combineReducers({
   books: toggleBook,
@@ -14,6 +14,7 @@ export default combineReducers({
   genres: toggleGenre,
   composerFilter: setFilter,
   currentTrack: setTrack,
-  currentPlayist: setPlaylist
+  currentPlayist: setPlaylist,
+  spotifySettingsToggled: toggleSpotifySettings
 });
 

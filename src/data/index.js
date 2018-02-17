@@ -8,7 +8,8 @@ var state = {
   genres: {},
   composerFilter: "",
   currentTrack: "",
-  currentPlaylist: ""
+  currentPlaylist: "",
+  spotifySettingsToggled: false
 };
 
 books.forEach(book => {

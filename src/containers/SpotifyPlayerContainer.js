@@ -3,10 +3,10 @@ import { toggleSpotifySettings } from "../actions";
 
 import SpotifyPlayer from "../components/SpotifyPlayer";
 
+
 const mapStateToProps = state => ({
   currentTrack: state.currentTrack,
-  currentPlaylist: state.currentPlaylist,
-  spotifySettingsToggled: state.spotifySettingsToggled
+  currentPlaylist: state.currentPlaylist
 });
 
 const mapDispatchToProps = dispatch => ({

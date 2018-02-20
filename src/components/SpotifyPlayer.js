@@ -1,22 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SpotifyPlayer = ({currentTrack, spotifySettingsToggled, currentPlaylist, onSettingsClick}) => {
-  
-  let settingsClassName = spotifySettingsToggled
-    ? "opened"
-    : "";
+import SpotifySettingsContainer from "../containers/SpotifySettingsContainer";
 
+const SpotifyPlayer = ({currentTrack, currentPlaylist, onSettingsClick}) => {
+  
   return (
     <div className="spotify-container">
       <button className="toggle-settings" onClick={() => onSettingsClick()}>
         <i className="fas fa-cog"></i>
       </button> 
-      <div className={"spotify-settings " + settingsClassName}>
-        <button className={"connect-spotify " + settingsClassName}>
-          <span>Connect Spotify</span>
-        </button>
-      </div>
+      <SpotifySettingsContainer />
       <div className="spotify-player-placeholder">
         <div className="spinner">
           <div className="bounce1"></div>
@@ -33,8 +27,7 @@ const SpotifyPlayer = ({currentTrack, spotifySettingsToggled, currentPlaylist, o
 SpotifyPlayer.propTypes = {
   currentTrack: PropTypes.string,
   currentPlaylist: PropTypes.string,
-  spotifySettingsToggled: PropTypes.bool,
-  onSettingsClick: PropTypes.func
+  onSettingsClick: PropTypes.func,
 };
 
 export default SpotifyPlayer;

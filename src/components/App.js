@@ -7,6 +7,7 @@ import GenreCollectionContainer from "../containers/GenreCollectionContainer";
 import ReferencesContainer from "../containers/ReferencesContainer";
 import ComposerFilterContainer from "../containers/ComposerFilterContainer";
 import SpotifyPlayerContainer from "../containers/SpotifyPlayerContainer";
+import Login from "./Login";
 
 export default class App extends React.Component {
   constructor() {
@@ -18,6 +19,7 @@ export default class App extends React.Component {
       <div className="container-fluid app-container">
         <div className="row header-container vertical-center-parent">
           <div className="col-lg-8 col-md-7 col-xs-12">
+            <Login />
             <Header />
           </div>
           <div className="col-lg-4 col-md-5 col-xs-12 vertical-center-parent">

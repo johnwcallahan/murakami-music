@@ -89,6 +89,11 @@
   padding: 0;
 }
 
+.create-playlist {
+  @extend .connect-spotify;
+}
+
+
 .spotify-settings.opened {
   width: 90%;
   @media screen and (min-width: $bp-large) {

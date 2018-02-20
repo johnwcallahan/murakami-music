@@ -4,23 +4,13 @@ import { render } from "react-dom";
 
 import { Provider } from "react-redux";
 
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./reducers";
-
-import {
-  toggleBook,
-  toggleComposer,
-  toggleGenre,
-  // setFilter
-} from "./actions";
-
-// import state from "./data";
-
-import getReferences from "./logic/getReferences";
-
+import { authMiddleware, authReducer as auth } from "redux-implicit-oauth2";
 const store = createStore(
   rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  applyMiddleware(authMiddleware)
 );
 
 

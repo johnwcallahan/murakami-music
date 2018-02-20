@@ -46,5 +46,9 @@ if (IS_DEV) {
   app.get("/", (req, res) => res.sendFile(HTML_FILE));
 }
 
+app.get("/callback", (req, res) => {
+  res.send("Login successful");
+});
+
 app.listen(port);
 console.log(`listening on port ${port}`);

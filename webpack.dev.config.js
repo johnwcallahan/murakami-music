@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 const injectConfig = new HtmlWebpackPlugin({
   template: "./index.html",
   filename: "index.html",
@@ -7,7 +8,10 @@ const injectConfig = new HtmlWebpackPlugin({
 
 module.exports = {
   context: __dirname + "/src",
-  entry: "./index.js",
+  entry: [
+    "webpack-hot-middleware/client",
+    "./index"
+  ],
   output: {
     path: __dirname + "/dst",
     filename: "bundle.js"
@@ -36,5 +40,9 @@ module.exports = {
       }
     ]
   },
-  plugins: [injectConfig]
+  plugins: [
+    injectConfig,
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ]
 };

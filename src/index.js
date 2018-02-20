@@ -23,6 +23,7 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
+
 import App from "./components/App";
 
 import "./styles/main.scss";
@@ -33,3 +34,7 @@ render(
   </Provider>,
 	document.getElementById("root")
 );
+
+if (module.hot) {
+  module.hot.accept();
+}

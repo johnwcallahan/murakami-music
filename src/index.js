@@ -2,6 +2,8 @@
 import React from "react";
 import { render } from "react-dom";
 
+import { show } from "redux-modal";
+
 import { Provider } from "react-redux";
 
 import { createStore, applyMiddleware } from "redux";
@@ -12,7 +14,6 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(authMiddleware)
 );
-
 
 import App from "./components/App";
 

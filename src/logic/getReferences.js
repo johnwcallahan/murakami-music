@@ -1,7 +1,5 @@
 import REFERENCES from "../data/references.json";
 
-import find from "lodash/find";
-
 export default function getReferences(state) {
 
   if (theStateIsInvalid(state))

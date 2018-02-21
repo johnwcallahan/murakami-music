@@ -1,5 +1,7 @@
 import React from "react";
 
+import { show } from "redux-modal";
+
 import Header from "./Header";
 import BookCollectionContainer from "../containers/BookCollectionContainer";
 import ComposerCollectionContainer from "../containers/ComposerCollectionContainer";
@@ -7,7 +9,9 @@ import GenreCollectionContainer from "../containers/GenreCollectionContainer";
 import ReferencesContainer from "../containers/ReferencesContainer";
 import ComposerFilterContainer from "../containers/ComposerFilterContainer";
 import SpotifyPlayerContainer from "../containers/SpotifyPlayerContainer";
+
 import Login from "./Login";
+import PlaylistModalContainer from "../containers/PlaylistModalContainer";
 
 export default class App extends React.Component {
   constructor() {
@@ -17,6 +21,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="container-fluid app-container">
+        <PlaylistModalContainer name="playlist-modal"/>
         <div className="row header-container vertical-center-parent">
           <div className="col-lg-8 col-md-7 col-xs-12">
             <Login />

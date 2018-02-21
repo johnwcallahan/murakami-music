@@ -47,3 +47,7 @@ export function toggleSpotifySettings() {
     type: types.TOGGLE_SPOTIFY_SETTINGS
   };
 }
+
+export function createPlaylist() {
+  console.log("CREATING PLAYLIST");
+}

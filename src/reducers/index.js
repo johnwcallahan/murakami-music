@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { authReducer as auth } from "redux-implicit-oauth2";
+import { reducer as modal } from "redux-modal";
 
 import {
   toggleBook,
@@ -11,6 +12,7 @@ import { setTrack, setPlaylist, toggleSpotifySettings } from "./spotifyPlayer";
 
 export default combineReducers({
   auth,
+  modal,
   books: toggleBook,
   composers: toggleComposer,
   genres: toggleGenre,

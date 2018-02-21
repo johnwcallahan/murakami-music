@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { login, logout } from "redux-implicit-oauth2";
-import { createPlaylist } from "../actions";
+
+import { show } from "redux-modal";
 
 import getReferences from "../logic/getReferences";
 
@@ -27,7 +28,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   login: () => dispatch(login(config)),
   logout: () => dispatch(logout()),
-  createPlaylist: () => dispatch(createPlaylist())
+  createPlaylist: () => dispatch(show("playlist-modal"))
 });
 
 const SpotifySettingsContainer = connect(

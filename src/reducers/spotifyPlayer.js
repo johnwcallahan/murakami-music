@@ -1,4 +1,9 @@
-import { SET_TRACK, SET_PLAYLIST, TOGGLE_SPOTIFY_SETTINGS } from "../constants/ActionTypes";
+import { 
+  SET_TRACK, 
+  SET_PLAYLIST, 
+  TOGGLE_SPOTIFY_SETTINGS 
+} from "../constants/ActionTypes";
+
 import DEFAULT_STATE from "../data";
 
 export function setTrack(state=DEFAULT_STATE.currentTrack, action) {

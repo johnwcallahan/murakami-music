@@ -18,7 +18,7 @@ export default combineReducers({
   genres: toggleGenre,
   composerFilter: setFilter,
   currentTrack: setTrack,
-  currentPlayist: setPlaylist,
+  currentPlaylist: setPlaylist,
   spotifySettingsToggled: toggleSpotifySettings
 });
 

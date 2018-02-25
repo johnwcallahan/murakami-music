@@ -1,5 +1,16 @@
 import _ from "lodash";
 
+export function splitArrayIntoChunks(arr, chunkSize) {
+  if (chunkSize == 0) {
+    throw new Error("Chunk size must be greater than 0");
+  }
+  let output = [];
+  for (let i=0, j=arr.length; i<j; i+=chunkSize) {
+    output.push(arr.slice(i, i+chunkSize));
+  }
+  return output;
+}
+
 export const findParamInState = (params, title) => {
   return params.filter(param => param.title == title)[0];
 };

@@ -1,7 +1,5 @@
 import React from "react";
 
-import { show } from "redux-modal";
-
 import Header from "./Header";
 import BookCollectionContainer from "../containers/BookCollectionContainer";
 import ComposerCollectionContainer from "../containers/ComposerCollectionContainer";
@@ -9,9 +7,11 @@ import GenreCollectionContainer from "../containers/GenreCollectionContainer";
 import ReferencesContainer from "../containers/ReferencesContainer";
 import ComposerFilterContainer from "../containers/ComposerFilterContainer";
 import SpotifyPlayerContainer from "../containers/SpotifyPlayerContainer";
+import PlaylistModalContainer from "../containers/PlaylistModalContainer";
+
+import { Grid, Row, Col } from "react-bootstrap";
 
 import Login from "./Login";
-import PlaylistModalContainer from "../containers/PlaylistModalContainer";
 
 export default class App extends React.Component {
   constructor() {
@@ -20,36 +20,31 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid app-container">
+      <Grid fluid={true} className="app-container">
         <PlaylistModalContainer name="playlist-modal"/>
-        <div className="row header-container vertical-center-parent">
-          <div className="col-lg-8 col-md-7 col-xs-12">
+        <Row className="header-container vertical-center-parent">
+          <Col lg={8} md={7} xs={12}>
             <Login />
             <Header />
-          </div>
-          <div className="col-lg-4 col-md-5 col-xs-12 vertical-center-parent">
+          </Col>
+          <Col lg={4} md={5} xs={12} className="vertical-center-parent">
             <SpotifyPlayerContainer />
-          </div>
-        </div>
-        <div className="row content-container">
-          <div className="col-lg-2 col-md-3 col-xs-12 book-collection-container collection-container">
+          </Col>
+        </Row>
+        <Row className="content-container">
+          <Col lg={2} md={3} xs={12} className="book-collection-container collection-container">
             <BookCollectionContainer />
-          </div>
-          <div className="col-lg-2 col-md-3 col-xs-12 col-md-push-6 col-lg-push-8 composer-collection-container collection-container">
+          </Col>
+          <Col lg={2} md={3} xs={12} lgPush={8} mdPush={6}className="composer-collection-container collection-container">
             <GenreCollectionContainer />
             <ComposerFilterContainer />
             <ComposerCollectionContainer />
-          </div>
-          <div className="col-lg-8 col-md-6 col-xs-12 col-md-pull-3 col-lg-pull-2 center-col">
-            <div className="button-container">
-            </div>
-            <div className="ref-container">
-              <ReferencesContainer />
-            </div>
-          </div>          
-        </div>
-        
-      </div>
+          </Col>
+          <Col lg={8} md={6} xs={12} mdPull={3} lgPull={2} className="center-col">
+            <ReferencesContainer />
+          </Col>          
+        </Row> 
+      </Grid>
     );
   }
 }

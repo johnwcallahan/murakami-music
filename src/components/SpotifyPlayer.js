@@ -26,7 +26,7 @@ const SpotifyPlayer = ({currentTrack, currentPlaylist, onSettingsClick}) => {
 
 SpotifyPlayer.propTypes = {
   currentTrack: PropTypes.string,
-  currentPlaylist: PropTypes.string,
+  currentPlaylist: PropTypes.array,
   onSettingsClick: PropTypes.func,
 };
 

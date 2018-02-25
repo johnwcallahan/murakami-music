@@ -1,36 +1,37 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Button, Modal } from "react-bootstrap";
 import { connectModal } from "redux-modal";
+import { connect } from "react-redux";
 
-const PlaylistModal = ({ show, handleHide }) => {
-  return (
-    <Modal show={show}>
-      <Modal.Header>
-        <Modal.Title>Hello</Modal.Title>
-      </Modal.Header>
+import { toggleGenre, getTrackInfo } from "../actions";
+import PlaylistModal from "../components/PlaylistModal";
 
-      <Modal.Body>
-        Hello!
-      </Modal.Body>
+// =============================================================================
+// Connect PlaylistModal Component
+// =============================================================================
+const mapStateToProps = state => ({
+  currentPlaylist: state.currentPlaylist
+});
 
-      <Modal.Footer>
-        <Button onClick={handleHide}>Close</Button>
-        <Button bsStyle="primary" onClick={handleHide}>Save changes</Button>
-      </Modal.Footer>
-    </Modal>
-  );
-};
+const mapDispatchToProps = dispatch => ({
+  getTrackInfo: (allSpotifyIds) => {
+    dispatch(getTrackInfo(allSpotifyIds));
+  },
+  onClick: genre => dispatch(toggleGenre(genre))
+});
 
-PlaylistModal.propTypes = {
-  handleHide: PropTypes.func,
-  show: PropTypes.bool.isRequired
-};
+const PlaylistModalInner = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PlaylistModal);
 
+// =============================================================================
+// Wrap PlaylistModal component via redux-modal
+// =============================================================================
 export default class PlaylistModalContainer extends Component {
   render() {
     const { name } = this.props;
-    const WrappedPlaylistModal = connectModal({ name })(PlaylistModal);
+    const WrappedPlaylistModal = connectModal({ name })(PlaylistModalInner);
     return <WrappedPlaylistModal />;
   }
 }

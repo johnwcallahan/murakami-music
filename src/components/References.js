@@ -26,7 +26,9 @@ const References = ({references, onClick}) => {
   });
 
   return (
-    <ul className="ref-list">{references}</ul>
+    <div className="ref-container">
+      <ul className="ref-list">{references}</ul>
+    </div>
   );
 };
 

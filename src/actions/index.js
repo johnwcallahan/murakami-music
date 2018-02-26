@@ -3,6 +3,8 @@ import getAllSpotifyIds from "../logic/getAllSpotifyIds";
 import { show } from "redux-modal";
 import axios from "axios";
 import { splitArrayIntoChunks } from "../util/helpers";
+import { login } from "redux-implicit-oauth2";
+import config from "../constants/oauthConfig";
 
 // =============================================================================
 // Action creators
@@ -62,9 +64,44 @@ export function setPlaylist(playlist) {
   };
 }
 
+export function setSpotifyUserId(userId) {
+  return {
+    type: types.SET_SPOTIFY_USER_ID,
+    userId
+  };
+}
+
 // =============================================================================
 // Thunks & async actions
 // =============================================================================
+export function loginToSpotify() {
+  return function(dispatch) {
+    dispatch(login(config))
+      .then(
+        () => dispatch(getSpotifyUserInfo()),
+        error => console.log(error)
+      )
+      .then(
+        data => dispatch(setSpotifyUserId(data.id)),
+        error => console.log(error)
+      );
+  };
+}
+
+export function getSpotifyUserInfo() {
+  return function(dispatch, getState) {
+    axios.get("https://api.spotify.com/v1/me", {
+      "headers": {
+        "Authorization": `Bearer ${getState().auth.token}`
+      }
+    })
+      .then(
+        response => response.data,
+        error => console.log(error)
+      );
+  };
+}
+
 export function getTrackInfo() {
   return function(dispatch, getState) {
     dispatch(requestTrackInfo);
@@ -83,7 +120,9 @@ export function getTrackInfo() {
 
     Promise.all(promises)
       .then(
+        // TODO: Make this clearer
         response => [].concat.apply([], response.map(el => el.data.tracks)),
+        //////////////////////////
         error => console.log(error)
       )
       .then(data => 

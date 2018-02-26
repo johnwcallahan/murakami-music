@@ -9,6 +9,7 @@ var state = {
   composerFilter: "",
   currentTrack: "",
   currentPlaylist: [],
+  spotifyUserId: "",
   spotifySettingsToggled: false
 };
 

@@ -1,7 +1,8 @@
 import { 
   SET_TRACK, 
   SET_PLAYLIST, 
-  TOGGLE_SPOTIFY_SETTINGS 
+  TOGGLE_SPOTIFY_SETTINGS,
+  SET_SPOTIFY_USER_ID
 } from "../constants/ActionTypes";
 
 import DEFAULT_STATE from "../data";
@@ -9,6 +10,15 @@ import DEFAULT_STATE from "../data";
 export function setTrack(state=DEFAULT_STATE.currentTrack, action) {
   switch (action.type) {
     case SET_TRACK:
+      return action.track;
+    default:
+      return state;
+  }
+}
+
+export function setSpotifyUserId(state=DEFAULT_STATE.userId, action) {
+  switch (action.type) {
+    case SET_SPOTIFY_USER_ID:
       return action.track;
     default:
       return state;

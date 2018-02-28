@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connectModal } from "redux-modal";
 import { connect } from "react-redux";
 
-import { toggleGenre, getTrackInfo } from "../actions";
+import { toggleGenre, createPlaylist } from "../actions";
 import PlaylistModal from "../components/PlaylistModal";
 
 // =============================================================================
@@ -14,9 +14,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getTrackInfo: (allSpotifyIds) => {
-    dispatch(getTrackInfo(allSpotifyIds));
-  },
+  createPlaylist: name => dispatch(createPlaylist(name)),
   onClick: genre => dispatch(toggleGenre(genre))
 });
 

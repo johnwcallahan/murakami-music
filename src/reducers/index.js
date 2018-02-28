@@ -8,7 +8,12 @@ import {
   toggleGenre,
 } from "./collectionItems";
 import setFilter from "./composerFilter";
-import { setTrack, setPlaylist, toggleSpotifySettings } from "./spotifyPlayer";
+import { 
+  setTrack, 
+  setPlaylist, 
+  toggleSpotifySettings, 
+  setSpotifyUserId 
+} from "./spotifyPlayer";
 
 export default combineReducers({
   auth,
@@ -19,6 +24,7 @@ export default combineReducers({
   composerFilter: setFilter,
   currentTrack: setTrack,
   currentPlaylist: setPlaylist,
-  spotifySettingsToggled: toggleSpotifySettings
+  spotifySettingsToggled: toggleSpotifySettings,
+  spotifyUserId: setSpotifyUserId
 });
 

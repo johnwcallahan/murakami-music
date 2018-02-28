@@ -64,10 +64,10 @@ export function setPlaylist(playlist) {
   };
 }
 
-export function setSpotifyUserId(userId) {
+export function setSpotifyUserId(spotifyUserId) {
   return {
     type: types.SET_SPOTIFY_USER_ID,
-    userId
+    spotifyUserId
   };
 }
 
@@ -79,10 +79,6 @@ export function loginToSpotify() {
     dispatch(login(config))
       .then(
         () => dispatch(getSpotifyUserInfo()),
-        error => console.log(error)
-      )
-      .then(
-        data => dispatch(setSpotifyUserId(data.id)),
         error => console.log(error)
       );
   };
@@ -96,7 +92,7 @@ export function getSpotifyUserInfo() {
       }
     })
       .then(
-        response => response.data,
+        response => dispatch(setSpotifyUserId(response.data.id)),
         error => console.log(error)
       );
   };
@@ -147,5 +143,26 @@ export function openModal() {
     dispatch(setPlaylist([]));
     dispatch(getTrackInfo());
     dispatch(show("playlist-modal"));
+  };
+}
+
+export function createPlaylist(name) {
+  return function(dispatch, getState) {
+    
+    let spotifyUserId = getState().spotifyUserId;
+    let token = getState().auth.token;
+
+    axios.post(`https://api.spotify.com/v1/users/${spotifyUserId}/playlists`, {
+      "name": name,
+      "public": false
+    }, {
+      "headers": {
+        "Authorization": `Bearer ${token}`
+      },
+    })
+      .then(
+        response => console.log(response),
+        error => console.log(error)
+      );
   };
 }

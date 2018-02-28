@@ -16,10 +16,10 @@ export function setTrack(state=DEFAULT_STATE.currentTrack, action) {
   }
 }
 
-export function setSpotifyUserId(state=DEFAULT_STATE.userId, action) {
+export function setSpotifyUserId(state=DEFAULT_STATE.spotifyUserId, action) {
   switch (action.type) {
     case SET_SPOTIFY_USER_ID:
-      return action.track;
+      return action.spotifyUserId;
     default:
       return state;
   }

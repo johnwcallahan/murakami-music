@@ -1,4 +1,4 @@
-import _ from "lodash";
+import { findIndex } from "lodash/findIndex";
 
 export function splitArrayIntoChunks(arr, chunkSize) {
   if (chunkSize == 0) {
@@ -27,7 +27,7 @@ export const updateComposersWithinGenre = (composers, genre) => {
 };
 
 export const toggleSelected = (params, title) => {
-  let index = _.findIndex(params, { title });
+  let index = findIndex(params, { title });
   params[index].selected = !params[index].selected;
   return params;
 };

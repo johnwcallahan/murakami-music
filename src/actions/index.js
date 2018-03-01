@@ -1,6 +1,6 @@
 import * as types from "../constants/ActionTypes";
 import getAllSpotifyIds from "../logic/getAllSpotifyIds";
-import { show } from "redux-modal";
+import { show, hide } from "redux-modal";
 import axios from "axios";
 import { splitArrayIntoChunks } from "../util/helpers";
 import { login } from "redux-implicit-oauth2";
@@ -27,13 +27,6 @@ export function toggleGenre(genre) {
   return {
     type: types.TOGGLE_GENRE,
     genre
-  };
-}
-
-export function setTrack(track) {
-  return {
-    type: types.SET_TRACK,
-    track
   };
 }
 
@@ -71,6 +64,20 @@ export function setSpotifyUserId(spotifyUserId) {
   };
 }
 
+export function setTrack(uri) {
+  return {
+    type: types.SET_TRACK,
+    uri
+  };
+}
+
+export function setCurrentPlaylistUri(uri) {
+  return {
+    type: types.SET_CURRENT_PLAYLIST_URI,
+    uri
+  };
+}
+
 // =============================================================================
 // Thunks & async actions
 // =============================================================================
@@ -93,7 +100,7 @@ export function getSpotifyUserInfo() {
     })
       .then(
         response => dispatch(setSpotifyUserId(response.data.id)),
-        error => console.log(error)
+        () => alert("Oops, something went wrong!")
       );
   };
 }
@@ -161,8 +168,37 @@ export function createPlaylist(name) {
       },
     })
       .then(
-        response => console.log(response),
-        error => console.log(error)
+        response => dispatch(addTracksToPlaylist(response.data.id)),
+        () => alert("Oops, something went wrong!")
       );
+  };
+}
+
+export function addTracksToPlaylist(playlistId) {
+  return function(dispatch, getState) {
+    
+    let spotifyUserId = getState().spotifyUserId;
+    let token = getState().auth.token;
+
+    let trackUris = getState().currentPlaylist.map(track => track.uri);
+
+    axios.post(`https://api.spotify.com/v1/users/${spotifyUserId}/playlists/${playlistId}/tracks`, {
+      "uris": trackUris,
+    }, {
+      "headers": {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+    })
+      .then(
+        () => {
+          dispatch(hide("playlist-modal"));
+          setTimeout(() => {
+            dispatch(toggleSpotifySettings());
+          }, 300);
+          dispatch(setCurrentPlaylistUri(playlistId));
+        },
+        () => alert("Oops, something went wrong!")
+      );    
   };
 }

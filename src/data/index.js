@@ -7,9 +7,10 @@ var state = {
   composers: {},
   genres: {},
   composerFilter: "",
-  currentTrack: "",
+  currentlyPlaying: {},
   currentPlaylist: [],
   spotifyUserId: "",
+  currentPlaylistUri: "",
   spotifySettingsToggled: false
 };
 

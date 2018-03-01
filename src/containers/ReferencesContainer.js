@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onClick: track => dispatch(setTrack(track))
+  onClick: uri => dispatch(setTrack(uri))
 });
 
 const ReferencesContainer = connect(

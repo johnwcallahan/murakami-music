@@ -5,19 +5,26 @@ import { Button, Modal, Table } from "react-bootstrap";
 import getArtists from "../logic/getArtists";
 import getDuration from "../logic/getDuration";
 
+const DEFAULT_PLAYLIST_NAME = "Murakami Music Playlist";
+
 class PlaylistModal extends React.Component {
   constructor() {
     super();
     this.state = {
-      input: ""
+      input: DEFAULT_PLAYLIST_NAME
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.getPlaylistName = this.getPlaylistName.bind(this);
   }
 
   handleInputChange(e) {
     this.setState({
       input: e.target.value
     });
+  }
+
+  getPlaylistName() {
+    return this.state.input || DEFAULT_PLAYLIST_NAME;
   }
 
   render() {
@@ -33,12 +40,14 @@ class PlaylistModal extends React.Component {
     });
 
     return (
-      <Modal show={this.props.show}>
+      <Modal onEntered={() => this.nameInput.select()} show={this.props.show}>
         <Modal.Header>
           <Modal.Title>Create playlist</Modal.Title>
           <input onChange={(e) => this.handleInputChange(e)}
                 type="text"
                 placeholder="Playlist name" 
+                defaultValue={this.state.input}
+                ref={input => this.nameInput = input } 
           />
         </Modal.Header>
     
@@ -61,7 +70,10 @@ class PlaylistModal extends React.Component {
         <Modal.Footer>
           <Button onClick={this.props.handleHide}>Close</Button>
           <Button bsStyle="primary" 
-                  onClick={() => this.props.createPlaylist(this.state.input)}>Create</Button>
+                  onClick={() => {
+                    let playlistName = this.getPlaylistName();
+                    this.props.createPlaylist(playlistName);
+                  }}>Create</Button>
         </Modal.Footer>
       </Modal>
     );

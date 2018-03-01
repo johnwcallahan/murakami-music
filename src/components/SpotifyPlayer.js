@@ -3,8 +3,15 @@ import PropTypes from "prop-types";
 
 import SpotifySettingsContainer from "../containers/SpotifySettingsContainer";
 
-const SpotifyPlayer = ({currentTrack, currentPlaylist, onSettingsClick}) => {
-  
+const SpotifyPlayer = ({currentlyPlaying, spotifyUserId, onSettingsClick}) => {
+
+  let spotifyPlayerUri;
+
+  if (currentlyPlaying.track)
+    spotifyPlayerUri = `https://open.spotify.com/embed?uri=spotify:track:${currentlyPlaying.track}&theme=white`;
+  else if (currentlyPlaying.playlist)
+    spotifyPlayerUri = `https://open.spotify.com/embed?uri=spotify:user:${spotifyUserId}:playlist:${currentlyPlaying.playlist}&theme=white`;
+
   return (
     <div className="spotify-container">
       <button className="toggle-settings" onClick={() => onSettingsClick()}>
@@ -18,15 +25,16 @@ const SpotifyPlayer = ({currentTrack, currentPlaylist, onSettingsClick}) => {
           <div className="bounce3"></div>
         </div>
       </div>   
-      <iframe className="spotify-player" src={"https://open.spotify.com/embed?uri=spotify:track:" + currentTrack + "&theme=white"}
+      <iframe className="spotify-player" src={spotifyPlayerUri}
         frameBorder="0"></iframe>
     </div>
   );
 };
 
 SpotifyPlayer.propTypes = {
-  currentTrack: PropTypes.string,
-  currentPlaylist: PropTypes.array,
+  currentlyPlaying: PropTypes.object,
+  playlistUri: PropTypes.string,
+  spotifyUserId: PropTypes.string,
   onSettingsClick: PropTypes.func,
 };
 

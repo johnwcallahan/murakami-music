@@ -5,8 +5,8 @@ import SpotifyPlayer from "../components/SpotifyPlayer";
 
 
 const mapStateToProps = state => ({
-  currentTrack: state.currentTrack,
-  currentPlaylist: state.currentPlaylist
+  currentlyPlaying: state.currentlyPlaying,
+  spotifyUserId: state.spotifyUserId
 });
 
 const mapDispatchToProps = dispatch => ({

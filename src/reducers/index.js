@@ -9,10 +9,10 @@ import {
 } from "./collectionItems";
 import setFilter from "./composerFilter";
 import { 
-  setTrack, 
   setPlaylist, 
   toggleSpotifySettings, 
-  setSpotifyUserId 
+  setSpotifyUserId, 
+  setCurrentlyPlaying
 } from "./spotifyPlayer";
 
 export default combineReducers({
@@ -22,9 +22,9 @@ export default combineReducers({
   composers: toggleComposer,
   genres: toggleGenre,
   composerFilter: setFilter,
-  currentTrack: setTrack,
   currentPlaylist: setPlaylist,
   spotifySettingsToggled: toggleSpotifySettings,
-  spotifyUserId: setSpotifyUserId
+  spotifyUserId: setSpotifyUserId,
+  currentlyPlaying: setCurrentlyPlaying
 });
 

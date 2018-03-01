@@ -2,15 +2,19 @@ import {
   SET_TRACK, 
   SET_PLAYLIST, 
   TOGGLE_SPOTIFY_SETTINGS,
-  SET_SPOTIFY_USER_ID
+  SET_SPOTIFY_USER_ID,
+  SET_CURRENT_PLAYLIST_URI
 } from "../constants/ActionTypes";
 
 import DEFAULT_STATE from "../data";
 
-export function setTrack(state=DEFAULT_STATE.currentTrack, action) {
+
+export function setCurrentlyPlaying(state=DEFAULT_STATE.currentlyPlaying, action) {
   switch (action.type) {
     case SET_TRACK:
-      return action.track;
+      return { "track": action.uri };
+    case SET_CURRENT_PLAYLIST_URI:
+      return { "playlist": action.uri };
     default:
       return state;
   }

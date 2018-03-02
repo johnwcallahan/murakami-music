@@ -11,8 +11,6 @@ import PlaylistModalContainer from "../containers/PlaylistModalContainer";
 
 import { Grid, Row, Col } from "react-bootstrap";
 
-import Login from "./Login";
-
 export default class App extends React.Component {
   constructor() {
     super();
@@ -24,7 +22,6 @@ export default class App extends React.Component {
         <PlaylistModalContainer name="playlist-modal"/>
         <Row className="header-container vertical-center-parent">
           <Col lg={8} md={7} xs={12}>
-            <Login />
             <Header />
           </Col>
           <Col lg={4} md={5} xs={12} className="vertical-center-parent">

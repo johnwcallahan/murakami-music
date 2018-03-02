@@ -2,12 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import SpotifySettingsContainer from "../containers/SpotifySettingsContainer";
+import { DEFAULT_PLAYLIST_URI } from "../constants/config";
 
 const SpotifyPlayer = ({currentlyPlaying, spotifyUserId, onSettingsClick}) => {
 
   let spotifyPlayerUri;
 
-  if (currentlyPlaying.track)
+  if (currentlyPlaying.playlist == "DEFAULT_PLAYLIST")
+    spotifyPlayerUri = DEFAULT_PLAYLIST_URI;
+  else if (currentlyPlaying.track)
     spotifyPlayerUri = `https://open.spotify.com/embed?uri=spotify:track:${currentlyPlaying.track}&theme=white`;
   else if (currentlyPlaying.playlist)
     spotifyPlayerUri = `https://open.spotify.com/embed?uri=spotify:user:${spotifyUserId}:playlist:${currentlyPlaying.playlist}&theme=white`;

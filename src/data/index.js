@@ -7,7 +7,9 @@ var state = {
   composers: {},
   genres: {},
   composerFilter: "",
-  currentlyPlaying: {},
+  currentlyPlaying: {
+    "playlist": "DEFAULT_PLAYLIST"
+  },
   currentPlaylist: [],
   spotifyUserId: "",
   currentPlaylistUri: "",

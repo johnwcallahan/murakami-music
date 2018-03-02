@@ -1,0 +1,1 @@
+export const DEFAULT_PLAYLIST_URI = "https://open.spotify.com/embed?uri=spotify:user:alo1kdj80zfrmonagi566w8q2:playlist:1uoNsS3ZDT7gSQVFVvWOPZ&theme=white";

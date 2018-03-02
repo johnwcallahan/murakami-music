@@ -19,8 +19,7 @@ const References = ({references, onClick}) => {
           <span className="book">| {ref.book}</span>
           <br/>
         </p>
-        <p>{ref.quote} <small>{ref.page}</small></p>
-
+        <p>{insertLineBreaks(ref.quote)} <small>({ref.page})</small></p>
       </li>
     );
   });
@@ -41,3 +40,11 @@ References.propTypes = {
 };
 
 export default References;
+
+function insertLineBreaks(text) {
+  return text.split("\n").map((item, index) => {
+    return index == 0
+      ? item
+      : [<br />, item];
+  });
+}

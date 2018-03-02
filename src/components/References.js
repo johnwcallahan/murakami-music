@@ -27,7 +27,10 @@ const References = ({references, onClick}) => {
 
   return (
     <div className="ref-container">
-      <ul className="ref-list">{references}</ul>
+      {references.length > 0
+        ? <ul className="ref-list">{references}</ul>
+        : <p className="no-results">No results! Try selecting something else</p>  
+      }
     </div>
   );
 };

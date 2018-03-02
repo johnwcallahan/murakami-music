@@ -56,3 +56,14 @@
     color: #2FD565;
   }
 }
+
+.no-results {
+  font-weight: lighter;
+  text-align: center;
+  padding: 24px;
+  
+  @media screen and (min-width: $bp-large) {
+    margin-top: 20%;
+    padding: 0;
+  }
+}

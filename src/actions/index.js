@@ -149,7 +149,12 @@ export function openModal() {
   return function(dispatch) {
     dispatch(setPlaylist([]));
     dispatch(getTrackInfo());
-    dispatch(show("playlist-modal"));
+
+    // Slight delay to give the trackInfo API a chance to complete --
+    // this smooths out the animation.
+    setTimeout(() => {
+      dispatch(show("playlist-modal"));
+    }, 250);
   };
 }
 

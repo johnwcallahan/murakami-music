@@ -41,6 +41,7 @@ class PlaylistModal extends React.Component {
 
     return (
       <Modal onEntered={() => this.nameInput.select()} 
+            keyboard={true}
             show={this.props.show}
             className="playlist-modal">
         <Modal.Header>
@@ -72,8 +73,8 @@ class PlaylistModal extends React.Component {
         </Modal.Body>
     
         <Modal.Footer>
-          <button className="close-modal" onClick={this.props.handleHide}>Close</button>
-          <button className="create float-right" 
+          <button className="close-modal shrink" onClick={this.props.handleHide}>Close</button>
+          <button className="create grow float-right" 
                   onClick={() => {
                     let playlistName = this.getPlaylistName();
                     this.props.createPlaylist(playlistName);

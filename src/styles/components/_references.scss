@@ -68,3 +68,24 @@
     padding: 0;
   }
 }
+
+.fade-wait-leave {
+  opacity: 1;
+}
+.fade-wait-leave.fade-wait-leave-active {
+  opacity: 0;
+  transition: opacity .2s ease-in;
+}
+
+.fade-wait-enter {
+  opacity: 0;
+}
+.fade-wait-enter.fade-wait-enter-active {
+  opacity: 1;
+  /* Delay the enter animation until the leave completes */
+  transition: opacity .2s ease-in .2s;
+}
+
+.fade-wait-height {
+  transition: height .2s ease-in-out;
+}

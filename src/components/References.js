@@ -8,7 +8,7 @@ const References = ({references, onClick}) => {
     return (
       <li key={shortid.generate()}>
         <p className="ref-title">
-          <span className="composer">{ref.composer}: {ref.piece}&nbsp;
+          <span className="composer">{ref.composer}: {ref.piece}
             <button title={"Listen to " + ref.piece} 
                     className="listen-button"
                     onClick={() => onClick(ref.spotifyId[0])}>

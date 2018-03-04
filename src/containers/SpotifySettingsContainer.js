@@ -1,10 +1,9 @@
 import { connect } from "react-redux";
-import { login, logout } from "redux-implicit-oauth2";
+import { logout } from "redux-implicit-oauth2";
 
 import { openModal, loginToSpotify } from "../actions";
 
 import SpotifySettings from "../components/SpotifySettings";
-import config from "../constants/oauthConfig";
 
 const mapStateToProps = state => ({
   spotifySettingsToggled: state.spotifySettingsToggled,

@@ -11,3 +11,11 @@
 .shrink:hover { 
   transform: scale(0.97); 
 }
+
+.show-sm {
+  display: none;
+  @media screen and (min-width: $bp-small) {
+    display: inline;
+    padding: 0 0 !important;
+  }
+}

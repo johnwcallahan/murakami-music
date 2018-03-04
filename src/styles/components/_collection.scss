@@ -41,7 +41,7 @@
 .book-collection-wrap {
   flex: 1;
   height: 300px;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;    

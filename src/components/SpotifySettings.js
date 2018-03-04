@@ -20,9 +20,12 @@ const SpotifySettings = ({spotifySettingsToggled, isLoggedIn, login, logout, ope
   else {
     return (
       <div className={"spotify-settings " + settingsClassName}>
-        <button className={"create-playlist " + settingsClassName} onClick={openModal}>
-          <span>Create Playlist</span>
+        <button className={"create-playlist grow " + settingsClassName} onClick={openModal}>
+          <span><span className="show-sm">Create </span>Playlist</span>
         </button>
+        <button className={"logout shrink " + settingsClassName} onClick={logout}>
+          <span>Log out</span>
+        </button>        
       </div>      
     );
   }

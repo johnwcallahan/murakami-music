@@ -32,7 +32,7 @@
   border-bottom-right-radius: 0;
   border-top-left-radius: 18px;
   border-bottom-left-radius: 18px;
-  font-size: 18px;
+  font-size: 13px;
   z-index: 2;
   opacity: 0.95;
   position: absolute;
@@ -42,10 +42,6 @@
 
   width: 10%;    
   
-  &:hover {
-    background-color: #2FD565;
-  }
-
   @media screen and (min-width: $bp-small) {
   font-size: 27px;   
   }
@@ -67,12 +63,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  justify-content: space-between;
   @media screen and (min-width: $bp-large) {
     left: 14%;
   }
 }
 
 .connect-spotify {
+  margin: 0 auto;
+  font-size: $font-size-enhanced;
   display: none;
   background-color: inherit;
   opacity: 0;
@@ -92,8 +91,41 @@
 
 .create-playlist {
   @extend .connect-spotify;
+  border-radius: 500px;
+  border: solid 1px white;
+  float: left;
+  margin: 0 6px;
+  line-height: 38px;
+  font-family: $primary-font;
+  transition: 0.17s ease-in-out 0s;
+  
+  &:hover {
+    background-color: #2FD565;
+  }  
+  
+  span {
+    padding: 22px;
+
+    @media screen and (min-width: $bp-large) {
+      padding: 12px;
+    }
+  }
 }
 
+.logout {
+  @extend .create-playlist;
+  float: right;
+  margin: 0 12px;
+  border-radius: 2px;
+  transition: 0.27s ease-in-out 0s;
+  span {
+    padding: 9px;
+  }
+  &:hover {
+    background-color: #EEEEEE;
+    color: black;
+  }     
+}
 
 .spotify-settings.opened {
   width: 90%;
@@ -126,9 +158,6 @@
     left: 14%;
     width: 86%;
   }  
-
-
-
 }
 
 .spotify-player-placeholder {

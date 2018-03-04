@@ -20,7 +20,7 @@ const References = ({references, onClick}) => {
           <br/>
         </p>
         <p>{insertLineBreaks(ref.quote)} <small>({ref.page})</small></p>
-      </li>
+      </li>      
     );
   });
 
@@ -45,6 +45,6 @@ function insertLineBreaks(text) {
   return text.split("\n").map((item, index) => {
     return index == 0
       ? item
-      : [<br />, item];
+      : [<br key={shortid.generate()} />, item];
   });
 }

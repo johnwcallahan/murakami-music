@@ -10,7 +10,10 @@ var state = {
   currentlyPlaying: {
     "playlist": "DEFAULT_PLAYLIST"
   },
-  currentPlaylist: [],
+  playlist: {
+    "trackInfo": [],
+    "error": null
+  },
   spotifyUserId: "",
   currentPlaylistUri: "",
   spotifySettingsToggled: false

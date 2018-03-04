@@ -14,7 +14,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   login: () => dispatch(loginToSpotify()),
   logout: () => dispatch(logout()),
-  createPlaylist: () => dispatch(openModal())
+  openModal: () => dispatch(openModal())
 });
 
 const SpotifySettingsContainer = connect(

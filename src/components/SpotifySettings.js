@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SpotifySettings = ({spotifySettingsToggled, isLoggedIn, login, logout, createPlaylist}) => {
+const SpotifySettings = ({spotifySettingsToggled, isLoggedIn, login, logout, openModal}) => {
 
   let settingsClassName = spotifySettingsToggled
   ? "opened"
@@ -20,7 +20,7 @@ const SpotifySettings = ({spotifySettingsToggled, isLoggedIn, login, logout, cre
   else {
     return (
       <div className={"spotify-settings " + settingsClassName}>
-        <button className={"create-playlist " + settingsClassName} onClick={createPlaylist}>
+        <button className={"create-playlist " + settingsClassName} onClick={openModal}>
           <span>Create Playlist</span>
         </button>
       </div>      
@@ -33,7 +33,7 @@ SpotifySettings.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
-  createPlaylist: PropTypes.func.isRequired
+  openModal: PropTypes.func.isRequired
 };
 
 export default SpotifySettings;

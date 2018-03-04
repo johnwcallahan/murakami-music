@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { setTrack } from "../actions";
+import { setCurrentlyPlayingTrack, closeSpotifySettings } from "../actions";
 
 import getReferences from "../logic/getReferences";
 import References from "../components/References";
@@ -9,7 +9,14 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onClick: uri => dispatch(setTrack(uri))
+  onClick: uri => {
+    dispatch(setCurrentlyPlayingTrack(uri));
+
+    // Slight delay to smooth animation
+    setTimeout(() => {
+      dispatch(closeSpotifySettings());
+    }, 400);
+  }
 });
 
 const ReferencesContainer = connect(

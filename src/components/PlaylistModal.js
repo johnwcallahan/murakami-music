@@ -28,7 +28,7 @@ class PlaylistModal extends React.Component {
   }
 
   render() {
-    let trackInfo = this.props.currentPlaylist.map((track, i) => {
+    let trackInfo = this.props.playlist.trackInfo.map((track, i) => {
       return (
         <tr key={track.id+i}>
           <td>{i+1}</td>
@@ -45,7 +45,6 @@ class PlaylistModal extends React.Component {
             show={this.props.show}
             className="playlist-modal">
         <Modal.Header>
-          {/* <Modal.Title>Create playlist</Modal.Title> */}
           <label htmlFor="playlist-input">Playlist name:</label>
           <input id="playlist-input" 
                 onChange={(e) => this.handleInputChange(e)}
@@ -55,21 +54,29 @@ class PlaylistModal extends React.Component {
                 ref={input => this.nameInput = input } 
           />
         </Modal.Header>
-    
+
         <Modal.Body>
-          <Table condensed>
-            <thead>
-              <tr> 
-                <th>#</th>
-                <th>Title</th>
-                <th>Artist</th>
-                <th>Duration</th>
-              </tr>
-            </thead>
-            <tbody>
-              {trackInfo}
-            </tbody>
-          </Table>
+        {this.props.playlist.error
+          ? <p className="error-message">
+              <i className="fas fa-exclamation-triangle"></i>
+              <span className="error-text">
+                {this.props.playlist.error.text}
+              </span>
+            </p>
+          : <Table condensed>
+              <thead>
+                <tr> 
+                  <th>#</th>
+                  <th>Title</th>
+                  <th>Artist</th>
+                  <th>Duration</th>
+                </tr>
+              </thead>
+              <tbody>
+                {trackInfo}
+              </tbody>
+            </Table>
+        }
         </Modal.Body>
     
         <Modal.Footer>
@@ -89,7 +96,7 @@ PlaylistModal.propTypes = {
   handleHide: PropTypes.func,
   createPlaylist: PropTypes.func,
   show: PropTypes.bool.isRequired,
-  currentPlaylist: PropTypes.array
+  playlist: PropTypes.object
 };
 
 export default PlaylistModal;

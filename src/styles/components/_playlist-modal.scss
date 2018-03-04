@@ -1,8 +1,19 @@
 .playlist-modal {
 
+  .error-message {
+    font-family: $primary-font;
+    font-size: $font-size-medium;
+  }
+
+  .error-text {
+    margin-left: 8px;
+    color: black;
+  }
+
   .modal-header {
     border: none;
   }
+
 
   label {
     font-family: $primary-font;

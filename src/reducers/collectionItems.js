@@ -6,6 +6,8 @@ import {
 
 import DEFAULT_STATE from "../data";
 
+// TODO: These should all be just one function
+
 export function toggleBook(state=DEFAULT_STATE.books, action) {
   switch (action.type) {
     case TOGGLE_BOOK:

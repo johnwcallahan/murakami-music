@@ -10,8 +10,10 @@ const SpotifyPlayer = ({currentlyPlaying, spotifyUserId, onSettingsClick}) => {
 
   if (currentlyPlaying.playlist == "DEFAULT_PLAYLIST")
     spotifyPlayerUri = DEFAULT_PLAYLIST_URI;
+
   else if (currentlyPlaying.track)
     spotifyPlayerUri = `https://open.spotify.com/embed?uri=spotify:track:${currentlyPlaying.track}&theme=white`;
+    
   else if (currentlyPlaying.playlist)
     spotifyPlayerUri = `https://open.spotify.com/embed?uri=spotify:user:${spotifyUserId}:playlist:${currentlyPlaying.playlist}&theme=white`;
 

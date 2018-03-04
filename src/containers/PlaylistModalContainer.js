@@ -10,7 +10,7 @@ import PlaylistModal from "../components/PlaylistModal";
 // Connect PlaylistModal Component
 // =============================================================================
 const mapStateToProps = state => ({
-  currentPlaylist: state.currentPlaylist
+  playlist: state.playlist
 });
 
 const mapDispatchToProps = dispatch => ({

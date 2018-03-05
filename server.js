@@ -4,17 +4,11 @@ const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 
-const webpack = require("webpack");
-const webpackDevMiddleware = require("webpack-dev-middleware");
-const webpackHotMiddleware = require("webpack-hot-middleware");
-const webpackDevConfig = require("./webpack.dev.config");
-
 require("dotenv").config();
 
 const DST_DIR = path.join(__dirname, "dst");
 const HTML_FILE = path.join(DST_DIR, "index.html");
 const IS_DEV = process.env.NODE_ENV !== "production";
-const compiler = webpack(webpackDevConfig);
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -25,6 +19,12 @@ app.use(morgan("dev"));
 app.use(cors());
 
 if (IS_DEV) {
+  const webpack = require("webpack");
+  const webpackDevMiddleware = require("webpack-dev-middleware");
+  const webpackHotMiddleware = require("webpack-hot-middleware");
+  const webpackDevConfig = require("./webpack.dev.config");  
+
+  const compiler = webpack(webpackDevConfig);  
   app.use(webpackDevMiddleware(compiler, {
     publicPath: webpackDevConfig.output.publicPath
   }));

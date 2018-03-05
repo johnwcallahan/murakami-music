@@ -1,6 +1,5 @@
-const webpack = require("webpack");
-
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 const injectConfig = new HtmlWebpackPlugin({
   template: "./index.html",
   filename: "index.html",

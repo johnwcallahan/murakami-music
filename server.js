@@ -41,6 +41,8 @@ if (IS_DEV) {
     });
   });
 } else {
+  const sslRedirect = require("heroku-ssl-redirect");
+  app.use(sslRedirect());
   app.use(express.static(DST_DIR));
 
   app.get("/", (req, res) => res.sendFile(HTML_FILE));

@@ -4,8 +4,6 @@ const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 
-require("dotenv").config();
-
 const DST_DIR = path.join(__dirname, "dst");
 const HTML_FILE = path.join(DST_DIR, "index.html");
 const IS_DEV = process.env.NODE_ENV !== "production";

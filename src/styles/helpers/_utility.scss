@@ -1,15 +1,19 @@
 .grow { 
+  -webkit-transition: all .4s ease-in-out; 
   transition: all .4s ease-in-out; 
 }
 .grow:hover { 
-  transform: scale(1.03); 
+  -webkit-transform: scale(1.03); 
+          transform: scale(1.03); 
 }
 
 .shrink { 
+  -webkit-transition: all .4s ease-in-out; 
   transition: all .4s ease-in-out; 
 }
 .shrink:hover { 
-  transform: scale(0.97); 
+  -webkit-transform: scale(0.97); 
+          transform: scale(0.97); 
 }
 
 .show-sm {

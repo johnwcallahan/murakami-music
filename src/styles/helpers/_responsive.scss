@@ -5,8 +5,11 @@ $bp-large: 992px;
   position: relative;
   
   @media screen and (min-width: $bp-large) {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-content: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
   }
 }
 

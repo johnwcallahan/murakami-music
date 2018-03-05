@@ -14,7 +14,6 @@
     border: none;
   }
 
-
   label {
     font-family: $primary-font;
     font-size: $font-size-enhanced;
@@ -47,8 +46,12 @@
   }
 
   .modal-footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     border: none;
   }
 
@@ -61,6 +64,7 @@
     color: $dark-grey;
     font-family: $primary-font;
     font-size: $font-size-medium;
+    -webkit-transition: 0.27s ease-in-out 0s;
     transition: 0.27s ease-in-out 0s;
     &:hover {
       background-color: $secondary-color;
@@ -78,6 +82,7 @@
     color: white;
     font-family: $primary-font;
     font-size: $font-size-enhanced;
+    -webkit-transition: 0.17s ease-in-out 0s;
     transition: 0.17s ease-in-out 0s;
     &:hover {
       background-color: #2FD565;

@@ -74,6 +74,18 @@ export function getAllSpotifyIds(state) {
   return allSpotifyIds;
 }
 
+export function buildTrackInfo(tracks) {
+  return tracks.map(track => {
+    return {
+      "name": track.name,
+      "duration_ms": track.duration_ms,
+      "artists": track.artists,
+      "id": track.id,
+      "uri": track.uri
+    };
+  });
+}
+
 // Get all artists from Spotify API response object
 export function getArtists(track) {
   return track.artists.map(track => {

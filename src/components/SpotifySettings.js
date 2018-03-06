@@ -7,8 +7,8 @@ import { openModal, loginToSpotify } from "../actions";
 const SpotifySettings = ({spotifySettingsToggled, isLoggedIn, login, logout, openModal}) => {
 
   let settingsClassName = spotifySettingsToggled
-  ? "opened"
-  : "";
+    ? "opened"
+    : "";
 
   if (!isLoggedIn) {
     return (

@@ -147,8 +147,11 @@ export function fetchSpotifyUserInfo() {
 }
 
 import chunk from "lodash/chunk";
-import { combineResponseObject } from "../util/helpers";
-import getAllSpotifyIds from "../logic/getAllSpotifyIds";
+import {
+  combineResponseObject,
+  buildTrackInfo,
+  getAllSpotifyIds
+} from "../util/helpers";
 
 // Fetch track info from Spotify API
 export function fetchTrackInfo() {
@@ -264,16 +267,4 @@ export function addTracksToPlaylist(playlistId) {
       error => dispatch(playlistCreationError())
     );
   };
-}
-
-function buildTrackInfo(tracks) {
-  return tracks.map(track => {
-    return {
-      "name": track.name,
-      "duration_ms": track.duration_ms,
-      "artists": track.artists,
-      "id": track.id,
-      "uri": track.uri
-    };
-  });
 }

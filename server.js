@@ -2,6 +2,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const express = require("express");
 const morgan = require("morgan");
+const compression = require("compression");
 const path = require("path");
 
 const DST_DIR = path.join(__dirname, "dst");
@@ -14,21 +15,22 @@ app.set("port", port);
 
 app.use(bodyParser.json());
 app.use(morgan("dev"));
+app.use(compression());
 app.use(cors());
 
 if (IS_DEV) {
   const webpack = require("webpack");
   const webpackDevMiddleware = require("webpack-dev-middleware");
   const webpackHotMiddleware = require("webpack-hot-middleware");
-  const webpackDevConfig = require("./webpack.dev.config");  
+  const webpackDevConfig = require("./webpack.dev.config");
 
-  const compiler = webpack(webpackDevConfig);  
+  const compiler = webpack(webpackDevConfig);
   app.use(webpackDevMiddleware(compiler, {
     publicPath: webpackDevConfig.output.publicPath
   }));
-  
+
   app.use(webpackHotMiddleware(compiler));
-  
+
   app.get("/", (req, res, next) => {
     compiler.outputFileSystem.readFile(HTML_FILE, (err, result) => {
       if (err)

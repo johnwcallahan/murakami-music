@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { toggleBook } from "../actions";
 
-const BookCollection = ({books, onClick}) => {
+export const BookCollection = ({books, onClick}) => {
   let bookArr = [];
   for (let b in books) {
     bookArr.push(books[b]);
@@ -11,7 +13,7 @@ const BookCollection = ({books, onClick}) => {
       <li key={b.book}>
         <button onClick={() => onClick(b.book)}
                 className={b.selected ? "selected" : "not-selected"}>
-          {b.book}  
+          {b.book}
         </button>
       </li>
     );
@@ -20,11 +22,11 @@ const BookCollection = ({books, onClick}) => {
   if (books.length == 0) {
     return <div className="no-results">No results</div>;
   }
-  
+
   return (
     <div style={{"height": "100%"}}>
       <div className="collection-header">Books</div>
-      <div className="book-collection-wrap"> 
+      <div className="book-collection-wrap">
         <ul className="collection book-collection">{bookCollection}</ul>
       </div>
     </div>
@@ -36,4 +38,15 @@ BookCollection.propTypes = {
   onClick: PropTypes.func
 };
 
-export default BookCollection;
+const mapStateToProps = state => ({
+  books: state.books
+});
+
+const mapDispatchToProps = dispatch => ({
+  onClick: book => dispatch(toggleBook(book))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BookCollection);

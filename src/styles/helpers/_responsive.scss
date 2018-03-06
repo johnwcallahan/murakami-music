@@ -3,7 +3,7 @@ $bp-large: 992px;
 
 .vertical-center-parent {
   position: relative;
-  
+
   @media screen and (min-width: $bp-large) {
     display: -webkit-box;
     display: -ms-flexbox;

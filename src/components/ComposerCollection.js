@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { toggleComposer } from "../actions";
 
-const ComposerCollection = ({composers, genres, composerFilter, onClick}) => {
+export const ComposerCollection = ({composers, genres, composerFilter, onClick}) => {
   let composerArr = [];
   for (let c in composers) {
     let genre = composers[c].genre;
@@ -9,13 +11,13 @@ const ComposerCollection = ({composers, genres, composerFilter, onClick}) => {
       composerArr.push(composers[c]);
   }
   let composerCollection = composerArr.map(c => {
-    
+
     if (!composerMatchesFilter(c.composer, composerFilter))
       return;
-    
+
     return (
       <li key={c.composer}>
-        <button 
+        <button
           onClick={() => onClick(c.composer)}
           className={c.selected ? "selected" : "not-selected"}>
         {c.composer}
@@ -27,7 +29,7 @@ const ComposerCollection = ({composers, genres, composerFilter, onClick}) => {
   if (composers.length == 0) {
     return <div className="no-results">No results</div>;
   }
-  
+
   return (
     <div className="composer-collection-wrap">
       <ul className="collection composer-collection">{composerCollection}</ul>
@@ -42,7 +44,20 @@ ComposerCollection.propTypes = {
   onClick: PropTypes.func
 };
 
-export default ComposerCollection;
+const mapStateToProps = state => ({
+  composers: state.composers,
+  genres: state.genres,
+  composerFilter: state.composerFilter
+});
+
+const mapDispatchToProps = dispatch => ({
+  onClick: composer => dispatch(toggleComposer(composer))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ComposerCollection);
 
 function composerMatchesFilter(composer, filter) {
   composer = composer.toLowerCase();

@@ -15,7 +15,7 @@
     background: #858e99;
     border-radius: 20px;
   }
-  
+
   &::-webkit-scrollbar-track {
     background: #E7E7E7;
   }
@@ -43,7 +43,7 @@
 
 .book {
   color: $primary-color;
-  font-weight: 300;  
+  font-weight: 300;
 }
 
 .listen-button {
@@ -62,7 +62,7 @@
   font-weight: lighter;
   text-align: center;
   padding: 24px;
-  
+
   @media screen and (min-width: $bp-large) {
     margin-top: 20%;
     padding: 0;

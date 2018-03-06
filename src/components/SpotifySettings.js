@@ -1,5 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logout } from "redux-implicit-oauth2";
+import { openModal, loginToSpotify } from "../actions";
 
 const SpotifySettings = ({spotifySettingsToggled, isLoggedIn, login, logout, openModal}) => {
 
@@ -25,8 +28,8 @@ const SpotifySettings = ({spotifySettingsToggled, isLoggedIn, login, logout, ope
         </button>
         <button className={"logout shrink " + settingsClassName} onClick={logout}>
           <span>Log out</span>
-        </button>        
-      </div>      
+        </button>
+      </div>
     );
   }
 };
@@ -39,4 +42,18 @@ SpotifySettings.propTypes = {
   openModal: PropTypes.func.isRequired
 };
 
-export default SpotifySettings;
+const mapStateToProps = state => ({
+  spotifySettingsToggled: state.spotifySettingsToggled,
+  isLoggedIn: state.auth.isLoggedIn,
+});
+
+const mapDispatchToProps = dispatch => ({
+  login: () => dispatch(loginToSpotify()),
+  logout: () => dispatch(logout()),
+  openModal: () => dispatch(openModal())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SpotifySettings);

@@ -1,37 +1,46 @@
-import { findIndex } from "lodash/findIndex";
+import REFERENCES from "../data/references.json";
 
-export function splitArrayIntoChunks(arr, chunkSize) {
-  if (chunkSize == 0) {
-    throw new Error("Chunk size must be greater than 0");
-  }
-  let output = [];
-  for (let i=0, j=arr.length; i<j; i+=chunkSize) {
-    output.push(arr.slice(i, i+chunkSize));
-  }
-  return output;
+// Return references based on selected params in state
+export function getReferences(state) {
+
+  if (theStateIsInvalid(state))
+    return REFERENCES;
+
+  let noBooksSelected = thereAreNoBooksSelected(state);
+  let noComposersSelected = thereAreNoComposersSelected(state);
+
+  return REFERENCES.filter(r => {
+    return (noBooksSelected || isPropertyOfTypeSelected(state, r.book, "book"))
+        && (noComposersSelected || isPropertyOfTypeSelected(state, r.composer, "composer"))
+        && isPropertyOfTypeSelected(state, r.genre, "genre");
+  });
 }
 
-export const findParamInState = (params, title) => {
-  return params.filter(param => param.title == title)[0];
-};
+function theStateIsInvalid(state) {
+  return !state || !state.books || !state.composers || !state.genres;
+}
 
-export const updateComposersWithinGenre = (composers, genre) => {
-  let updatedComposers = composers.map(composer => {
-    if (composer.genre == genre.title) {
-      composer.genreSelected = genre.selected;
-    }
-    if (composer.selected) composer.selected = false;
-    return composer;
-  });
-  return updatedComposers;
-};
+function thereAreNoBooksSelected(state) {
+  for (let book in state.books) {
+    if (state.books[book].selected)
+      return false;
+  }
+  return true;
+}
 
-export const toggleSelected = (params, title) => {
-  let index = findIndex(params, { title });
-  params[index].selected = !params[index].selected;
-  return params;
-};
+function thereAreNoComposersSelected(state) {
+  for (let composer in state.composers) {
+    if (state.composers[composer].selected)
+      return false;
+  }
+  return true;
+}
 
+function isPropertyOfTypeSelected(state, property, type) {
+  return state[type + "s"][property].selected;
+}
+
+// Load Redux store from local storage
 export const loadState = () => {
   try {
     const serializedState = localStorage.getItem("state");
@@ -43,6 +52,7 @@ export const loadState = () => {
   }
 };
 
+// Save Redux store to local storage
 export const saveState = (state) => {
   try {
     const serializedState = JSON.stringify(state);
@@ -51,3 +61,41 @@ export const saveState = (state) => {
     console.log(err);
   }
 };
+
+// Return Spotify IDs based on selected params in state
+export function getAllSpotifyIds(state) {
+  let references = getReferences(state);
+  let allSpotifyIds = [];
+  references.forEach(ref => {
+    ref.spotifyId.forEach(id => {
+      allSpotifyIds.push(id);
+    });
+  });
+  return allSpotifyIds;
+}
+
+// Get all artists from Spotify API response object
+export function getArtists(track) {
+  return track.artists.map(track => {
+    return track.name;
+  }).join(", ");
+}
+
+// Get duration of track in minutes and seconds
+export function getDurationInMinutesAndSeconds(track) {
+  let duration_ms = track["duration_ms"];
+  return msToMinutesAndSeconds(duration_ms);
+}
+
+// Convert milliseconds to minutes and seconds, e.g. 324342 --> "5:24"
+function msToMinutesAndSeconds(ms) {
+  let minutes = Math.floor(ms/60000);
+  let seconds = ((ms%60000)/1000).toFixed(0);
+  return (seconds == 60
+    ? (minutes+1) + ":00"
+    : minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
+}
+
+export function combineResponseObject(response) {
+  return [].concat.apply([], response.map(el => el.data.tracks));
+}

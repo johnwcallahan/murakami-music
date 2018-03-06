@@ -1,19 +1,19 @@
-.grow { 
-  -webkit-transition: all .4s ease-in-out; 
-  transition: all .4s ease-in-out; 
+.grow {
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
 }
-.grow:hover { 
-  -webkit-transform: scale(1.03); 
-          transform: scale(1.03); 
+.grow:hover {
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
 }
 
-.shrink { 
-  -webkit-transition: all .4s ease-in-out; 
-  transition: all .4s ease-in-out; 
+.shrink {
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
 }
-.shrink:hover { 
-  -webkit-transform: scale(0.97); 
-          transform: scale(0.97); 
+.shrink:hover {
+  -webkit-transform: scale(0.97);
+          transform: scale(0.97);
 }
 
 .show-sm {

@@ -26,7 +26,7 @@
   @media screen and (min-width: $bp-large) {
     margin-bottom: 0;
     height: 100%;
-  }  
+  }
 }
 
 .composer-collection-wrap {
@@ -37,7 +37,7 @@
   overflow-y: scroll;
 
   border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;  
+  border-bottom-right-radius: 6px;
 
   @media screen and (min-width: $bp-large) {
     height: 100%;
@@ -52,7 +52,7 @@
   overflow-y: auto;
 
   border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;    
+  border-bottom-right-radius: 6px;
 
   @media screen and (min-width: $bp-large) {
     height: 100%;
@@ -137,7 +137,7 @@
 
   &:hover {
     background-color: $secondary-color !important;
-  }  
+  }
 }
 
 .not-selected {

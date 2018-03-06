@@ -1,6 +1,6 @@
-import books from "../data/books.json";
-import composersGenres from "../data/composersGenres.json";
-import genres from "../data/genres.json";
+import books from "./books.json";
+import composersGenres from "./composersGenres.json";
+import genres from "./genres.json";
 
 var state = {
   books: {},

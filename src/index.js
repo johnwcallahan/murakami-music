@@ -26,7 +26,6 @@ store.subscribe(throttle(() => {
 }), 1000);
 
 import App from "./components/App";
-
 import "./styles/main.scss";
 
 render(

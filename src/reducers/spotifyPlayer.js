@@ -1,24 +1,19 @@
-import { 
+import {
   SET_SPOTIFY_USER_ID,
-  
   TOGGLE_SPOTIFY_SETTINGS,
   OPEN_SPOTIFY_SETTINGS,
   CLOSE_SPOTIFY_SETTINGS,
-  
   FETCH_TRACK_INFO_SUCCESS,
   FETCH_TRACK_INFO_FAILURE,
-  
-  CURRENTLY_PLAYING_TRACK, 
+  CURRENTLY_PLAYING_TRACK,
   CURRENTLY_PLAYING_PLAYLIST,
-
   PLAYLIST_CREATION_FAILURE,
   PLAYLIST_CREATION_SUCCESS,
   RE_LOGIN_PROMPT,
 } from "../constants/ActionTypes";
+import INITIAL_STATE from "../data";
 
-import DEFAULT_STATE from "../data";
-
-export function setSpotifyUserId(state=DEFAULT_STATE.spotifyUserId, action) {
+export function setSpotifyUserId(state=INITIAL_STATE.spotifyUserId, action) {
   switch (action.type) {
     case SET_SPOTIFY_USER_ID:
       return action.spotifyUserId;
@@ -27,7 +22,7 @@ export function setSpotifyUserId(state=DEFAULT_STATE.spotifyUserId, action) {
   }
 }
 
-export function toggleSpotifySettings(state=DEFAULT_STATE.spotifySettingsToggled, action) {
+export function toggleSpotifySettings(state=INITIAL_STATE.spotifySettingsToggled, action) {
   switch (action.type) {
 
     case TOGGLE_SPOTIFY_SETTINGS:
@@ -35,24 +30,24 @@ export function toggleSpotifySettings(state=DEFAULT_STATE.spotifySettingsToggled
 
     case OPEN_SPOTIFY_SETTINGS:
       return true;
-    
+
     case CLOSE_SPOTIFY_SETTINGS:
       return false;
-    
+
     default:
       return state;
   }
 }
 
-export function playlist(state=DEFAULT_STATE.playlist, action) {
+export function playlist(state=INITIAL_STATE.playlist, action) {
   switch (action.type) {
-    
+
     case FETCH_TRACK_INFO_SUCCESS:
       return {
         trackInfo: action.trackInfo,
         error: null
       };
-    
+
     case FETCH_TRACK_INFO_FAILURE:
       return {
         trackInfo: [],
@@ -74,7 +69,7 @@ export function playlist(state=DEFAULT_STATE.playlist, action) {
         trackInfo: state.trackInfo,
         error: null
       };
-      
+
     case PLAYLIST_CREATION_FAILURE:
       return {
         trackInfo: state.trackInfo,
@@ -82,13 +77,13 @@ export function playlist(state=DEFAULT_STATE.playlist, action) {
           "text": "Couldn't create playlist... check your internet connection"
         }
       };
-    
+
     default:
       return state;
   }
 }
 
-export function setCurrentlyPlaying(state=DEFAULT_STATE.currentlyPlaying, action) {
+export function setCurrentlyPlaying(state=INITIAL_STATE.currentlyPlaying, action) {
   switch (action.type) {
 
     case CURRENTLY_PLAYING_TRACK:

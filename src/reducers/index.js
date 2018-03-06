@@ -1,17 +1,16 @@
 import { combineReducers } from "redux";
 import { authReducer as auth } from "redux-implicit-oauth2";
 import { reducer as modal } from "redux-modal";
-
 import {
   toggleBook,
   toggleComposer,
   toggleGenre,
 } from "./collectionItems";
 import setFilter from "./composerFilter";
-import { 
+import {
   playlist,
-  toggleSpotifySettings, 
-  setSpotifyUserId, 
+  toggleSpotifySettings,
+  setSpotifyUserId,
   setCurrentlyPlaying,
 } from "./spotifyPlayer";
 

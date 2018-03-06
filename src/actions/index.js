@@ -1,16 +1,8 @@
 import * as types from "../constants/ActionTypes";
-import axios from "axios";
-import { login, logout } from "redux-implicit-oauth2";
-import { show, hide } from "redux-modal";
-
-import getAllSpotifyIds from "../logic/getAllSpotifyIds";
-import { splitArrayIntoChunks } from "../util/helpers";
-import config from "../constants/oauthConfig";
 
 // =============================================================================
 // Action creators
 // =============================================================================
-// TODO: toggleBook, toggleComposer, toggleGenre should be just one function
 export function toggleBook(book) {
   return {
     type: types.TOGGLE_BOOK,
@@ -61,7 +53,7 @@ export function closeSpotifySettings() {
 // Track info/playlists
 export function requestTrackInfo(tracks) {
   return {
-    type: types.REQUEST_TRACK_INFO,
+    type: types.FETCH_TRACK_INFO_REQUEST,
     tracks
   };
 }
@@ -121,11 +113,14 @@ export function setCurrentlyPlayingPlaylist(uri) {
 // =============================================================================
 // Thunks & async actions
 // =============================================================================
+import axios from "axios";
+import { login, logout } from "redux-implicit-oauth2";
+import { OAUTH_CONFIG } from "../constants/config";
 
 // Perform authentication using oAuth implicit grant flow
 export function loginToSpotify() {
   return function(dispatch) {
-    dispatch(login(config))
+    dispatch(login(OAUTH_CONFIG))
     .then(
       () => dispatch(fetchSpotifyUserInfo()),
       error => console.log(error)
@@ -151,18 +146,22 @@ export function fetchSpotifyUserInfo() {
   };
 }
 
+import chunk from "lodash/chunk";
+import { combineResponseObject } from "../util/helpers";
+import getAllSpotifyIds from "../logic/getAllSpotifyIds";
+
 // Fetch track info from Spotify API
 export function fetchTrackInfo() {
   return function(dispatch, getState) {
-    
+
     let token = getState().auth.token;
 
     // The Spotify trackInfo API limits 50 tracks per request, so we split
-    // tracks into chunks and make multiple requests if necessary 
+    // tracks into chunks and make multiple requests if necessary
     let state = getState();
     let allTracks = getAllSpotifyIds(state);
-    let trackChunks = splitArrayIntoChunks(allTracks, 50);    
-    
+    let trackChunks = chunk(allTracks, 50);
+
     let promises = [];
     trackChunks.forEach(chunk => {
       promises.push(spotifyTrackInfoRequest(chunk.join(","), token));
@@ -192,6 +191,8 @@ function spotifyTrackInfoRequest(tracks, token) {
   });
 }
 
+import { show, hide } from "redux-modal";
+
 export function openModal() {
   return function(dispatch) {
 
@@ -213,7 +214,7 @@ export function createPlaylist(name) {
       dispatch(logout());
       return dispatch(reLoginPrompt());
     }
-    
+
     let spotifyUserId = getState().spotifyUserId;
     let token = getState().auth.token;
 
@@ -234,7 +235,7 @@ export function createPlaylist(name) {
 
 export function addTracksToPlaylist(playlistId) {
   return function(dispatch, getState) {
-    
+
     let spotifyUserId = getState().spotifyUserId;
     let token = getState().auth.token;
 
@@ -261,7 +262,7 @@ export function addTracksToPlaylist(playlistId) {
         dispatch(setCurrentlyPlayingPlaylist(playlistId));
       },
       error => dispatch(playlistCreationError())
-    );    
+    );
   };
 }
 
@@ -275,8 +276,4 @@ function buildTrackInfo(tracks) {
       "uri": track.uri
     };
   });
-}
-
-function combineResponseObject(response) {
-  return [].concat.apply([], response.map(el => el.data.tracks));
 }

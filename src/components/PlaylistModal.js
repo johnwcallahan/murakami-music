@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Modal, Table } from "react-bootstrap";
-
-import getArtists from "../logic/getArtists";
-import getDuration from "../logic/getDuration";
+import { connectModal } from "redux-modal";
+import { connect } from "react-redux";
+import { toggleGenre, createPlaylist } from "../actions";
+import { getArtists, getDurationInMinutesAndSeconds } from "../util/helpers";
 
 const DEFAULT_PLAYLIST_NAME = "Murakami Music Mix";
 
@@ -34,24 +35,24 @@ class PlaylistModal extends React.Component {
           <td>{i+1}</td>
           <td>{track.name}</td>
           <td>{getArtists(track)}</td>
-          <td className="duration">{getDuration(track)}</td>
+          <td className="duration">{getDurationInMinutesAndSeconds(track)}</td>
         </tr>
       );
     });
 
     return (
-      <Modal onEntered={() => this.nameInput.select()} 
+      <Modal onEntered={() => this.nameInput.select()}
             keyboard={true}
             show={this.props.show}
             className="playlist-modal">
         <Modal.Header>
           <label htmlFor="playlist-input">Playlist name:</label>
-          <input id="playlist-input" 
+          <input id="playlist-input"
                 onChange={(e) => this.handleInputChange(e)}
                 type="text"
-                placeholder="Playlist name" 
+                placeholder="Playlist name"
                 defaultValue={this.state.input}
-                ref={input => this.nameInput = input } 
+                ref={input => this.nameInput = input }
           />
         </Modal.Header>
 
@@ -65,7 +66,7 @@ class PlaylistModal extends React.Component {
             </p>
           : <Table condensed>
               <thead>
-                <tr> 
+                <tr>
                   <th>#</th>
                   <th>Title</th>
                   <th>Artist</th>
@@ -78,10 +79,10 @@ class PlaylistModal extends React.Component {
             </Table>
         }
         </Modal.Body>
-    
+
         <Modal.Footer>
           <button className="close-modal shrink" onClick={this.props.handleHide}>Close</button>
-          <button className="create grow float-right" 
+          <button className="create grow float-right"
                   onClick={() => {
                     let playlistName = this.getPlaylistName();
                     this.props.createPlaylist(playlistName);
@@ -99,4 +100,34 @@ PlaylistModal.propTypes = {
   playlist: PropTypes.object
 };
 
-export default PlaylistModal;
+// =============================================================================
+// Connect PlaylistModal Component
+// =============================================================================
+const mapStateToProps = state => ({
+  playlist: state.playlist
+});
+
+const mapDispatchToProps = dispatch => ({
+  createPlaylist: name => dispatch(createPlaylist(name)),
+  onClick: genre => dispatch(toggleGenre(genre))
+});
+
+const PlaylistModalInner = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PlaylistModal);
+
+// =============================================================================
+// Wrap PlaylistModal component via redux-modal
+// =============================================================================
+export default class PlaylistModalContainer extends React.Component {
+  render() {
+    const { name } = this.props;
+    const WrappedPlaylistModal = connectModal({ name })(PlaylistModalInner);
+    return <WrappedPlaylistModal />;
+  }
+}
+
+PlaylistModalContainer.propTypes = {
+  name: PropTypes.string
+};

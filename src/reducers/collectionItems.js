@@ -3,52 +3,41 @@ import {
   TOGGLE_COMPOSER,
   TOGGLE_GENRE
 } from "../constants/ActionTypes";
+import INITIAL_STATE from "../data";
 
-import DEFAULT_STATE from "../data";
-
-// TODO: These should all be just one function
-
-export function toggleBook(state=DEFAULT_STATE.books, action) {
+export function toggleBook(state=INITIAL_STATE.books, action) {
   switch (action.type) {
     case TOGGLE_BOOK:
-      var stateCopy = Object.assign({}, state);
-      for (let b in stateCopy) {
-        if (stateCopy[b].book == action.book) {
-          stateCopy[b].selected = !state[b].selected;
-        }
-      }
-      return stateCopy;
+      return toggleParameter("book", state, action);
     default:
       return state;
   }
 }
 
-export function toggleComposer(state=DEFAULT_STATE.composers, action) {
+export function toggleComposer(state=INITIAL_STATE.composers, action) {
   switch (action.type) {
     case TOGGLE_COMPOSER:
-      var stateCopy = Object.assign({}, state);
-      for (let c in stateCopy) {
-        if (stateCopy[c].composer == action.composer) {
-          stateCopy[c].selected = !state[c].selected;
-        }
-      }
-      return stateCopy;  
+      return toggleParameter("composer", state, action);
     default:
       return state;
   }
 }
 
-export function toggleGenre(state=DEFAULT_STATE.genres, action) {
+export function toggleGenre(state=INITIAL_STATE.genres, action) {
   switch (action.type) {
     case TOGGLE_GENRE:
-      var stateCopy = Object.assign({}, state);
-      for (let g in stateCopy) {
-        if (stateCopy[g].genre == action.genre) {
-          stateCopy[g].selected = !state[g].selected;
-        }
-      }
-      return stateCopy;     
+      return toggleParameter("genre", state, action);
     default:
       return state;
   }
+}
+
+function toggleParameter(type, state, action) {
+  let stateCopy = Object.assign({}, state);
+  for (let param in stateCopy) {
+    if (stateCopy[param][type] == action[type]) {
+      stateCopy[param].selected = !state[param].selected;
+    }
+  }
+  return stateCopy;
 }

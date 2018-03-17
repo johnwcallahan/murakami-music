@@ -1,7 +1,7 @@
 export const DEFAULT_PLAYLIST_URI = "https://open.spotify.com/embed?uri=spotify:user:alo1kdj80zfrmonagi566w8q2:playlist:1uoNsS3ZDT7gSQVFVvWOPZ&theme=white";
 
 let redirect = process.env.NODE_ENV == "production"
-  ? "https://murakami-music.herokuapp.com/callback"
+  ? "https://murakami-music.com/callback.html"
   : "http://localhost:8080/callback";
 
 export const OAUTH_CONFIG = {
